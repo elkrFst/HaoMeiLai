@@ -28,10 +28,10 @@ $logo_url = "../imagenes/logo comida.png"; // Icono de un dragón, un enlace ext
         <div class="header-center">
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#" class="active">Inicio</a></li>
-                    <li><a href="#menu">Menú</a></li>
-                    <li><a href="#reservas">Reservas</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="indexusuario.php" class="active">Inicio</a></li>
+                    <li><a href="menu.php">Menú</a></li>
+                    <li><a href="reservas.php">Reservas</a></li>
+                    <li><a href="aboutus.php">Contacto</a></li>
                 </ul>
             </nav>
         </div>

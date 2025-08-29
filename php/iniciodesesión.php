@@ -27,7 +27,8 @@
                     <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="submit" class="btn-login">Iniciar Sesión</button>
+                <button type="button" class="btn-login" onclick="window.location.href='indexusuario.php'"2>Iniciar Sesión</button>
+                <!-- Si quieres validar el login, vuelve a poner type="submit" y quita el onclick -->
             </form>
             <div class="divider"></div>
             <button class="btn-register" onclick="window.location.href='registro.php'">Crear Nueva Cuenta</button>
