@@ -11,16 +11,27 @@
 	align-items: center;
 }
 .logo-header {
-	height: 56px;
-	width: 56px;
+	height: 80px;
+	width: 80px;
 	object-fit: contain;
-	margin-right: 16px;
+	margin-right: 18px;
+}
+.nombre-header-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 .nombre-header {
-	font-size: 2rem;
+	font-size: 1.3rem;
 	font-weight: bold;
-	color: #a52a2a;
-	letter-spacing: 2px;
+	color: #000000e0;
+	letter-spacing: 1px;
+}
+.subnombre-header {
+	font-size: 0.95rem;
+	color: #888;
+	font-weight: 400;
+	margin-top: 2px;
 }
 .header-right {
 	display: flex;

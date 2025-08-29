@@ -10,7 +10,10 @@
 	<header class="header-admin">
 		<div class="header-left">
 			<img src="../imagenes/logo comida.png" alt="Logo Hao Mei Lai" class="logo-header">
-			<span class="nombre-header">HAO MEI LAI</span>
+			<div class="nombre-header-block">
+				<span class="nombre-header">Hao Mei Lai</span>
+				<span class="subnombre-header">comida auténtica oriental</span>
+			</div>
 		</div>
 		<div class="header-right">
 			<button class="icon-btn" title="Inicio" onclick="location.href='indexusuario.php'">
