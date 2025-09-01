@@ -53,15 +53,52 @@ $logo_url = "../imagenes/logo comida.png"; // Icono de un dragón, un enlace ext
                     <a href="#pedidos">Mis pedidos</a>
                     <a href="#configuracion">Configuración</a>
                     <a href="#ayuda">Ayuda</a>
-                    <a href="../php/iniciodesesión.php">Cerrar sesión</a>
+                    <a href="../php/iniciodesesión.php">iniciar sesion</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <main style="padding: 20px;">
-        <h2>Bienvenidos a Hao Mei Lai</h2>
-        <p>Disfruta de la auténtica experiencia culinaria china en un ambiente inigualable.</p>
+    <main style="padding: 0;">
+        <section class="bienvenida-hero">
+            <div class="bienvenida-overlay">
+                <h2>¡Bienvenidos a <span>Hao Mei Lai</span>!</h2>
+                <p>Disfruta de la <b>auténtica experiencia culinaria china</b> en un ambiente inigualable.</p>
+            </div>
+        </section>
+        <?php include 'menu.php'; ?>
     </main>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-column">
+                <h3>Más información sobre Hao Mei Lai</h3>
+                <ul>
+                    <li><a href="aboutus.php">Contáctanos</a></li>
+                    <li><a href="#">Regístrate y recibe información</a></li>
+                    <li><a href="#">Nuestra Promesa</a></li>
+                    <li><a href="#">Hao Mei Lai en el mundo</a></li>
+                    <li><a href="#">Información nutricional</a></li>
+                    <li><a href="#">Facturación</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-social">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="../imagenes/facebook.svg" alt="Facebook"></a>
+                    <a href="#" aria-label="Instagram"><img src="../imagenes/instagram.svg" alt="Instagram"></a>
+                    <a href="#" aria-label="Twitter"><img src="../imagenes/twitter.svg" alt="Twitter"></a>
+                    <a href="#" aria-label="TikTok"><img src="../imagenes/tiktok.svg" alt="TikTok"></a>
+                </div>
+                <div class="footer-logo">
+                    <img src="../imagenes/logo comida.png" alt="Logo Hao Mei Lai">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; <?php echo date("Y"); ?> Hao Mei Lai. Todos los derechos reservados.</span>
+            <span> | <a href="#">Privacidad de datos</a> | <a href="#">Términos y condiciones</a> | <a href="#">Promociones</a></span>
+        </div>
+    </footer>
 </body>
 </html>
