@@ -1,3 +1,75 @@
+.admin-dashboard-cards * {
+	font-family: Calibri, Arial, Helvetica, sans-serif !important;
+	font-weight: 400;
+}
+
+.admin-dashboard-visual h3 {
+	color: #d90427bb !important;
+}
+
+.admin-dashboard-visual table {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px rgba(220, 38, 38, 0.12);
+	overflow: hidden;
+}
+.admin-dashboard-visual table thead tr {
+	background: #fff;
+	color: #000;
+}
+.admin-dashboard-visual table tbody tr {
+	transition: background 0.2s;
+}
+.admin-dashboard-visual table tbody tr:hover {
+	background: #ffe5e5;
+}
+.admin-dashboard-visual table td, .admin-dashboard-visual table th {
+	padding: 10px 8px;
+	border-bottom: 1px solid #f3f3f3;
+}
+.admin-dashboard-visual table tr:last-child td {
+	border-bottom: none;
+}
+
+/* Colores vivos para etiquetas de estado */
+.admin-dashboard-visual .estado-completado {
+	background: #43ea7c !important;
+	color: #fff !important;
+}
+.admin-dashboard-visual .estado-preparacion {
+	background: #ffd600 !important;
+	color: #222 !important;
+}
+.admin-dashboard-visual .estado-pendiente {
+	background: #ff3b3b00 !important;
+	color: #fff !important;
+}
+
+/* Colores vivos para botones */
+.admin-dashboard-visual button,
+.admin-dashboard-visual button,
+.admin-dashboard-cards button {
+	background: #fff !important;
+	color: #d43939 !important;
+	border: 1px solid #e74c3c !important;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(220, 38, 38, 0.10);
+	transition: background 0.2s, color 0.2s;
+}
+.admin-dashboard-visual button:hover,
+.admin-dashboard-cards button:hover {
+	background: #f3f3f3 !important;
+	color: #000 !important;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.nombre-header {
+	font-family: 'Gian Gothic Sans', Arial, Helvetica, sans-serif;
+}
+
+.admin-dashboard-cards * {
+	font-family: Calibri, Arial, Helvetica, sans-serif !important;
+	font-weight: 400;
+}
 .header-admin {
 	display: flex;
 	justify-content: space-between;
