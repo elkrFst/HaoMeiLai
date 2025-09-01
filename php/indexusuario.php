@@ -85,10 +85,44 @@ $logo_url = "../imagenes/logo comida.png"; // Icono de un dragón, un enlace ext
             <div class="footer-column footer-social">
                 <h3>Síguenos</h3>
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><img src="../imagenes/facebook.svg" alt="Facebook"></a>
-                    <a href="#" aria-label="Instagram"><img src="../imagenes/instagram.svg" alt="Instagram"></a>
-                    <a href="#" aria-label="Twitter"><img src="../imagenes/twitter.svg" alt="Twitter"></a>
-                    <a href="#" aria-label="TikTok"><img src="../imagenes/tiktok.svg" alt="TikTok"></a>
+                    <!-- Facebook -->
+                    <a href="#" aria-label="Facebook">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="16" fill="#1877F3"/>
+                            <path d="M21 16.02h-3v8h-3v-8h-2v-3h2v-1.5c0-2.07 1.02-3.5 3.5-3.5h2.5v3h-2c-.47 0-.5.18-.5.5V13h2.5l-.5 3z" fill="#fff"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#" aria-label="Instagram">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                            <radialGradient id="ig" cx="0.5" cy="0.5" r="0.8">
+                                <stop offset="0%" stop-color="#fdf497"/>
+                                <stop offset="45%" stop-color="#fdf497"/>
+                                <stop offset="60%" stop-color="#fd5949"/>
+                                <stop offset="90%" stop-color="#d6249f"/>
+                                <stop offset="100%" stop-color="#285AEB"/>
+                            </radialGradient>
+                            <rect x="4" y="4" width="24" height="24" rx="8" fill="url(#ig)"/>
+                            <circle cx="16" cy="16" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+                            <circle cx="22" cy="10" r="1.5" fill="#fff"/>
+                        </svg>
+                    </a>
+                    <!-- Twitter -->
+                    <a href="#" aria-label="Twitter">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="16" fill="#1DA1F2"/>
+                            <path d="M24 12.3c-.5.2-1 .4-1.5.5.5-.3.9-.8 1.1-1.3-.5.3-1 .5-1.6.6-.5-.5-1.2-.8-2-.8-1.5 0-2.7 1.2-2.7 2.7 0 .2 0 .4.1.6-2.2-.1-4.1-1.2-5.4-2.8-.2.4-.3.8-.3 1.3 0 .9.5 1.7 1.2 2.2-.4 0-.8-.1-1.1-.3v.1c0 1.3.9 2.3 2.1 2.6-.2.1-.4.1-.7.1-.2 0-.3 0-.5-.1.3 1 1.3 1.7 2.4 1.7-1 .8-2.2 1.3-3.5 1.3-.2 0-.4 0-.6-.1 1.2.8 2.6 1.3 4.1 1.3 4.9 0 7.6-4 7.6-7.6v-.3c.5-.4 1-.9 1.3-1.5z" fill="#fff"/>
+                        </svg>
+                    </a>
+                    <!-- TikTok -->
+                    <a href="#" aria-label="TikTok">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="16" fill="#000"/>
+                            <path d="M22.5 14.5c-1.1 0-2-.9-2-2V9.5h-2v9c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.2 0 .4 0 .5.1v-2.1c-.2 0-.3-.1-.5-.1-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4v-3.5c.6.4 1.3.6 2 .6v-2z" fill="#fff"/>
+                            <path d="M20.5 9.5v3c0 1.1.9 2 2 2v-2c-.6 0-1-.4-1-1v-2h-1z" fill="#25F4EE"/>
+                            <path d="M18.5 9.5v9c0 1.1-.9 2-2 2v2c2.2 0 4-1.8 4-4v-9h-2z" fill="#FE2C55"/>
+                        </svg>
+                    </a>
                 </div>
                 <div class="footer-logo">
                     <img src="../imagenes/logo comida.png" alt="Logo Hao Mei Lai">
