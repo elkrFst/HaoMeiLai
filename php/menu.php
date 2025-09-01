@@ -33,58 +33,62 @@ $menu = [
         <h2 style="text-align:center; color:#b30000;">Nuestro Menú</h2>
         <div class="menu-categorias">
             <div class="categoria">
-                <!-- Arroz -->
+                <!-- Arroz (Bowl de arroz con palillos) -->
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <circle cx="24" cy="28" r="14" fill="#fffbe7"/>
-                    <ellipse cx="24" cy="28" rx="10" ry="6" fill="#ffe082"/>
-                    <ellipse cx="24" cy="26" rx="8" ry="3" fill="#fffde7"/>
-                    <ellipse cx="24" cy="28" rx="7" ry="2" fill="#ffe082"/>
-                    <ellipse cx="24" cy="28" rx="4" ry="1" fill="#fff"/>
+                    <ellipse cx="24" cy="36" rx="14" ry="7" fill="#f5e1a4"/>
+                    <ellipse cx="24" cy="30" rx="12" ry="6" fill="#fff"/>
+                    <ellipse cx="24" cy="28" rx="10" ry="5" fill="#f5e1a4"/>
+                    <ellipse cx="24" cy="26" rx="8" ry="4" fill="#fff"/>
                     <!-- Palillos -->
-                    <rect x="18" y="12" width="2" height="12" rx="1" fill="#b30000"/>
-                    <rect x="28" y="10" width="2" height="14" rx="1" fill="#b30000"/>
+                    <rect x="18" y="10" width="2" height="14" rx="1" fill="#b30000"/>
+                    <rect x="28" y="8" width="2" height="16" rx="1" fill="#b30000"/>
                 </svg>
                 <span>Arroz</span>
             </div>
             <div class="categoria">
-                <!-- Fideos -->
+                <!-- Fideos (Bowl con fideos y palillos) -->
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <ellipse cx="24" cy="34" rx="14" ry="7" fill="#fffbe7"/>
-                    <ellipse cx="24" cy="30" rx="10" ry="5" fill="#ffe082"/>
-                    <ellipse cx="24" cy="30" rx="8" ry="3" fill="#fffde7"/>
-                    <path d="M18 28 Q24 36 30 28" stroke="#e2b76a" stroke-width="2" fill="none"/>
-                    <path d="M20 30 Q24 34 28 30" stroke="#e2b76a" stroke-width="2" fill="none"/>
+                    <ellipse cx="24" cy="36" rx="14" ry="7" fill="#f5e1a4"/>
+                    <ellipse cx="24" cy="30" rx="12" ry="6" fill="#fff"/>
+                    <ellipse cx="24" cy="28" rx="10" ry="5" fill="#ffe082"/>
+                    <ellipse cx="24" cy="26" rx="8" ry="4" fill="#fffde7"/>
+                    <!-- Fideos -->
+                    <path d="M18 28 Q24 34 30 28" stroke="#e2b76a" stroke-width="2" fill="none"/>
+                    <path d="M20 30 Q24 32 28 30" stroke="#e2b76a" stroke-width="2" fill="none"/>
                     <!-- Palillos -->
-                    <rect x="20" y="14" width="2" height="12" rx="1" fill="#b30000"/>
-                    <rect x="26" y="12" width="2" height="14" rx="1" fill="#b30000"/>
+                    <rect x="20" y="10" width="2" height="14" rx="1" fill="#b30000"/>
+                    <rect x="26" y="8" width="2" height="16" rx="1" fill="#b30000"/>
                 </svg>
                 <span>Fideos</span>
             </div>
             <div class="categoria">
-                <!-- Rollos Primavera -->
+                <!-- Rollos Primavera (rollo partido y relleno verde) -->
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <!-- Rollos -->
                     <rect x="14" y="28" width="20" height="6" rx="3" fill="#ffe082" stroke="#e2b76a" stroke-width="2"/>
+                    <ellipse cx="24" cy="31" rx="4" ry="2" fill="#7ad0a2"/>
                     <rect x="18" y="32" width="12" height="4" rx="2" fill="#e2b76a"/>
-                    <!-- Lechuga -->
-                    <ellipse cx="24" cy="28" rx="4" ry="1.5" fill="#7ad0a2"/>
+                    <!-- Relleno -->
+                    <ellipse cx="24" cy="29" rx="2" ry="1" fill="#fff"/>
                 </svg>
                 <span>Rollos</span>
             </div>
             <div class="categoria">
-                <!-- Bebidas -->
+                <!-- Bebidas (vaso con popote y burbujas) -->
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <!-- Vaso -->
                     <rect x="18" y="14" width="12" height="20" rx="6" fill="#90caf9"/>
                     <rect x="20" y="18" width="8" height="12" rx="4" fill="#42a5f5"/>
-                    <!-- Popote -->
-                    <rect x="24" y="10" width="2" height="8" rx="1" fill="#b30000"/>
                     <ellipse cx="24" cy="34" rx="8" ry="3" fill="#fff" stroke="#42a5f5" stroke-width="1.5"/>
+                    <!-- Popote -->
+                    <rect x="24" y="8" width="2" height="10" rx="1" fill="#b30000"/>
+                    <!-- Burbujas -->
+                    <circle cx="24" cy="28" r="1" fill="#fff"/>
+                    <circle cx="26" cy="30" r="1" fill="#fff"/>
+                    <circle cx="22" cy="30" r="1" fill="#fff"/>
                 </svg>
                 <span>Bebidas</span>
             </div>
             <div class="categoria">
-                <!-- Postres (Galleta de la fortuna) -->
+                <!-- Postres (galleta de la fortuna con papelito) -->
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                     <ellipse cx="24" cy="34" rx="14" ry="7" fill="#ffe082"/>
                     <ellipse cx="24" cy="28" rx="10" ry="6" fill="#fffde7"/>
@@ -93,6 +97,8 @@ $menu = [
                     <!-- Galleta rota -->
                     <path d="M20 24 Q24 28 28 24" stroke="#e2b76a" stroke-width="2" fill="none"/>
                     <rect x="22" y="22" width="4" height="2" rx="1" fill="#e2b76a"/>
+                    <!-- Papelito -->
+                    <rect x="25" y="20" width="6" height="1" rx="0.5" fill="#fff"/>
                 </svg>
                 <span>Postres</span>
             </div>
