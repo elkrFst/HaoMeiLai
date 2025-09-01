@@ -1,3 +1,33 @@
+<?php
+session_start();
+require 'conexion.php'; // <-- Corrección aquí
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM usuarios WHERE email = ? AND contraseña = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        $_SESSION['usuario'] = $row['nombre'];
+        $_SESSION['rol'] = $row['rol'];
+        if ($row['rol'] === 'admin') {
+            header("Location: indexadmin.php");
+        } else {
+            header("Location: indexusuario.php");
+        }
+        exit();
+    } else {
+        echo "<script>alert('Correo o contraseña incorrectos'); window.location.href='iniciodesesión.php';</script>";
+    }
+    $stmt->close();
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +43,7 @@
             </div>
             <h2>Bienvenido</h2>
             <p class="login-subtitle">Inicia sesión en tu cuenta</p>
-            <form action="procesar_login.php" method="post">
+            <form action="iniciodesesión.php" method="post">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                 
@@ -27,8 +57,7 @@
                     <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="button" class="btn-login" onclick="window.location.href='indexusuario.php'"2>Iniciar Sesión</button>
-                <!-- Si quieres validar el login, vuelve a poner type="submit" y quita el onclick -->
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
             <div class="divider"></div>
             <button class="btn-register" onclick="window.location.href='registro.php'">Crear Nueva Cuenta</button>
