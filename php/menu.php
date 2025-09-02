@@ -146,12 +146,13 @@ $menu = [
             box-shadow: 0 2px 8px rgba(0,0,0,0.10);
             text-align: center;
             padding: 24px 18px 16px 18px;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
             width: 160px;
         }
         .categoria:hover {
             transform: translateY(-6px) scale(1.04);
-            border: 2.5px solid #0ba5ddff;
+            border-color: #7ec8e3;
+            border-style: dashed;
         }
         .categoria img {
             width: 72px;
