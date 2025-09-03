@@ -42,7 +42,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `contraseña`, `rol`, `fecha_registro`) VALUES
 (1, 'Administrador', 'HML@gmail.com', 'admin123', 'admin', '2025-08-31'),
-(2, 'Usuario', 'usuario@haomeilai.com', 'usuario123', 'usuario', '2025-08-31');
+(2, 'Usuario', 'user@gmail.com', 'usuario123', 'usuario', '2025-08-31');
 
 --
 -- Índices para tablas volcadas

@@ -1,4 +1,4 @@
-body {
+    body {
             background: url('../imagenes/fondo-fuego.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
@@ -18,11 +18,13 @@ body {
             box-shadow: 0 2px 8px rgba(0,0,0,0.10);
             text-align: center;
             padding: 24px 18px 16px 18px;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
             width: 160px;
         }
         .categoria:hover {
             transform: translateY(-6px) scale(1.04);
+            border-color: #7ec8e3;
+            border-style: dashed;
         }
         .categoria img {
             width: 72px;
@@ -56,8 +58,7 @@ body {
             border: 2px solid transparent;
         }
         .menu-card:hover {
-            box-shadow: 0 8px 32px rgba(179,0,0,0.15);
-            border-color: #b30000;
+            border-color: #b30000ff;
         }
         .menu-card img {
             width: 180px;
