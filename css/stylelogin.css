@@ -5,7 +5,7 @@ body, html {
 }
 
 .login-bg {
-    background: url('../img/bg-login.jpg') no-repeat center center fixed;
+    background: url('../imagenes/logo comida.png') sno-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     width: 100vw;
