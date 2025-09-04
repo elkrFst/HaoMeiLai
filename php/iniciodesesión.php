@@ -35,14 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Iniciar Sesión - Hao Mei Lai</title>
     <link rel="stylesheet" href="../css/stylelogin.css">
 </head>
-<body>
+<body style="background: url('../imagenes/fondo comida.jpg')">
     <div class="login-bg">
         <div class="login-container">
             <div class="login-logo">
-                <img src="../img/logo.png" alt="Hao Mei Lai Logo">
+                <img src="../imagenes/logo comida.png"alt="Hao Mei Lai Logo">
             </div>
             <h2>Bienvenido</h2>
-            <p class="login-subtitle">Inicia sesión en tu cuenta</p>
+            <p class="login-subtitle">Inicia sesión con tu cuenta</p>
             <form action="iniciodesesión.php" method="post">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" placeholder="tu@email.com" required>
