@@ -146,7 +146,7 @@ function filtrarPedidos() {
 				   <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;" onclick="location.href='trabajadores.php'">
         <span>👥</span> Ver Trabajadores
     </button>
-    <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;">
+    <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;" onclick="location.href='almacen.php'">
         <span>🍽</span> Gestionar Menú
     </button>
    

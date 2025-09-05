@@ -5,300 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabajadores - Panel Admin</title>
     <link rel="stylesheet" href="../../css/Admin.css">
+    <link rel="stylesheet" href="../../css/trabajadores.css">
+     <script src="../js/trabajadores.js"></script>
     <!-- Google Fonts Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
-            background: #f8f8fa;
-            margin: 0; /* <-- Asegura que no haya margen en body */
-            padding: 0; /* <-- Asegura que no haya padding en body */
-        }
-        .header-admin {
-            margin: 0;
-            padding: 0.3rem 1rem 0.3rem 1rem;
-            background: linear-gradient(90deg, #ea5c2b 0%, #f9a602 100%);
-            box-shadow: none;
-            border-radius: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            z-index: 1000;
-            min-height: 64px;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 10px;
-        }
-        .logo-header {
-            width: 56px !important;
-            height: 56px !important;
-            object-fit: cover;
-            border-radius: 0;
-        }
-        .nombre-header-block {
-            line-height: 1.1;
-        }
-        .nombre-header {
-            font-size: 1.25em !important;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-        .subnombre-header {
-            font-size: 0.95em !important;
-            color: #fff;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            padding-right: 18px;
-        }
-        .perfil-admin .perfil-img {
-            width: 28px !important;
-            height: 28px !important;
-        }
-        .perfil-admin .perfil-nombre {
-            font-size: 1em !important;
-        }
-        main {
-            margin-top: 70px !important;
-        }
-        .trabajadores-lista {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 18px rgba(231,76,60,0.09);
-            padding: 2rem 1.5rem 2.5rem 1.5rem;
-        }
-        .trabajadores-lista h2 {
-            margin-bottom: 1.5rem;
-            color: #e74c3c;
-            text-align: center;
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-size: 2.1em;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(231,76,60,0.08);
-        }
-        .trabajador-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding: 1.5rem 1rem;
-            border-bottom: 1px solid #f1f1f1;
-            border-left: 6px solid #e74c3c;
-            background: linear-gradient(90deg, #fff8f6 80%, #ffe5e0 100%);
-            border-radius: 12px;
-            margin-bottom: 1.2rem;
-            box-shadow: 0 2px 12px rgba(231,76,60,0.06);
-            transition: box-shadow 0.2s, border-color 0.2s;
-        }
-        .trabajador-card:hover {
-            box-shadow: 0 6px 24px rgba(231,76,60,0.13);
-            border-left: 6px solid #c0392b;
-        }
-        .trabajador-foto {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #e74c3c;
-            background: #fff3e0;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(231,76,60,0.08);
-        }
-        .trabajador-info {
-            flex: 1;
-        }
-        .trabajador-nombre {
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-weight: 700;
-            font-size: 1.35em;
-            color: #222;
-            margin-bottom: 0.1em;
-            letter-spacing: 0.5px;
-        }
-        .trabajador-puesto {
-            color: #fff;
-            background: #e74c3c;
-            display: inline-block;
-            padding: 2px 12px;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            margin-bottom: 0.3em;
-            margin-top: 0.1em;
-            box-shadow: 0 1px 4px rgba(231,76,60,0.09);
-        }
-        .trabajador-contacto {
-            color: #e74c3c;
-            font-size: 1em;
-            margin-bottom: 0.3em;
-            font-weight: 500;
-        }
-        .trabajador-contacto .icon {
-            margin-right: 3px;
-        }
-        .trabajador-extra {
-            margin: 0.2em 0 0.5em 0;
-            color: #555;
-            font-size: 0.97em;
-        }
-        .trabajador-descripcion {
-            font-size: 0.98em;
-            color: #444;
-            margin-bottom: 0.4em;
-        }
-        .trabajador-acciones {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-left: 1em;
-        }
-        .trabajador-acciones button {
-            background: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 18px;
-            cursor: pointer;
-            font-size: 1em;
-            font-family: 'Montserrat', Arial, sans-serif;
-            font-weight: 600;
-            transition: background 0.2s;
-            box-shadow: 0 1px 4px rgba(231,76,60,0.09);
-        }
-        .trabajador-acciones button:hover {
-            background: #c0392b;
-        }
-        @media (max-width: 600px) {
-            .header-admin {
-                padding: 0.5rem 0.5rem 0.2rem 0.5rem;
-            }
-            .trabajadores-lista {
-                padding: 1rem 0.5rem 1.5rem 0.5rem;
-            }
-            .trabajador-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.7rem;
-                margin-bottom: 1.1rem;
-            }
-            .trabajador-acciones {
-                width: 100%;
-                flex-direction: row;
-                gap: 10px;
-                margin-top: 8px;
-                margin-left: 0;
-            }
-        }
-        /* Estilos para el modal */
-        #modalEditar {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-        }
-        #formEditar {
-            background: #fff;
-            border-radius: 12px;
-            max-width: 350px;
-            width: 90vw;
-            padding: 2rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            position: relative;
-        }
-        #formEditar button[type="button"] {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 1.3em;
-            color: #e74c3c;
-            cursor: pointer;
-        }
-        #formEditar h3 {
-            margin: 0 0 1em 0;
-            color: #e74c3c;
-        }
-        #formEditar label {
-            font-size: 0.9em;
-            color: #333;
-        }
-        #formEditar input, #formEditar textarea {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 0.6em;
-            font-size: 0.95em;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        #formEditar button[type="submit"] {
-            background: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 0;
-            font-size: 1em;
-            margin-top: 0.5em;
-            cursor: pointer;
-        }
-        /* Estilos para el modal nuevo trabajador */
-        #modalNuevo {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-        }
-        #formNuevo {
-            background: #fff;
-            border-radius: 12px;
-            max-width: 350px;
-            width: 90vw;
-            padding: 2rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-            position: relative;
-        }
-        #formNuevo button[type="button"] {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 1.3em;
-            color: #e74c3c;
-            cursor: pointer;
-        }
-        #formNuevo h3 {
-            margin: 0 0 1em 0;
-            color: #27ae60;
-        }
-    </style>
+   
 </head>
 <body>
     <header class="header-admin">
@@ -314,10 +25,6 @@
             <button class="icon-btn" title="Regresar al Panel Admin" onclick="location.href='indexadmin.php'" style="background:none;border:none;cursor:pointer;">
                 <!-- Icono flecha regreso -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            </button>
-            <button class="icon-btn" title="Inicio" onclick="location.href='../indexusuario.php'" style="background:none;border:none;cursor:pointer;">
-                <!-- Icono casa -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </button>
             <button class="icon-btn" title="Notificaciones" style="background:none;border:none;cursor:pointer;">
                 <!-- Icono campana -->
@@ -338,17 +45,17 @@
         </div>
     </header>
     <main>
-        <section class="admin-dashboard-cards" style="display: flex; gap: 2rem; margin-top: 2rem; justify-content: center; align-items: center;">
-            <div style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem 2rem; min-width: 220px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 600; color: #333;">Trabajadores</span>
-                    <span style="color: #e74c3c; font-size: 1.2em;">👥</span>
-                </div>
-                <div style="font-size: 2em; font-weight: bold; margin: 0.5em 0; color: #222;" id="totalTrabajadores">0</div>
-                <div style="color: #e74c3c; font-size: 0.95em;">Activos en el sistema</div>
+    <section class="admin-dashboard-cards" style="display: flex; gap: 2rem; margin-top: 7rem; justify-content: center; align-items: center;">
+        <div style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem 2rem; min-width: 220px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600; color: #333;">Trabajadores</span>
+                <span style="color: #e74c3c; font-size: 1.2em;">👥</span>
             </div>
-            <!-- Puedes agregar más tarjetas si lo deseas -->
-        </section>
+            <div style="font-size: 2em; font-weight: bold; margin: 0.5em 0; color: #222;" id="totalTrabajadores">0</div>
+            <div style="color: #e74c3c; font-size: 0.95em;">Activos en el sistema</div>
+        </div>
+        <!-- Puedes agregar más tarjetas si lo deseas -->
+    </section>
         <div class="trabajadores-lista">
             <h2>Trabajadores Actuales</h2>
             <!-- Aquí ya no va el botón de añadir trabajador -->
