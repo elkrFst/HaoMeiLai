@@ -17,7 +17,11 @@
             border-radius: 16px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+<<<<<<< HEAD
+            padding: 24px 18px 16px 18px;
+=======
             padding: 24px 18px 16px 18px;out;
+>>>>>>> 591679f49dda968dea908e526bc92ddfa6f11f59
             width: 160px;
         }
         .categoria:hover {
