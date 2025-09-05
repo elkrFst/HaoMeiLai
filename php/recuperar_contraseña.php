@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Contenido
                 $mail->isHTML(true);
+                $mail->CharSet = 'UTF-8';
                 $mail->Subject = 'Recupera tu contraseña - Hao Mei Lai';
                 $mail->Body    = "Haz clic en el siguiente enlace para cambiar tu contraseña:<br><a href='$link'>$link</a>";
 

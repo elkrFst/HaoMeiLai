@@ -5,7 +5,8 @@
     <title>Menú | Hao Mei Lai</title>
     <link rel="stylesheet" href="menu2.css">
 </head>
-<body>
+<body style="background: url('../../imagenes/fondo.jpg') no-repeat center center fixed; background-size: cover;">
+    <a href="../indexusuario.php" class="back-button">← Volver al Inicio</a>
     <div class="menu-container">
         <!-- Cerdo Agridulce -->
         <div class="menu-card">
