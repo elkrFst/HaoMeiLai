@@ -20,7 +20,7 @@
 				<!-- Icono casa -->
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
 			</button>
-			<button class="icon-btn" title="Notificaciones">
+			<button class="icon-btn" title="Notificaciones" id="btn-notificaciones">
 				<!-- Icono campana -->
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
 			</button>
@@ -43,7 +43,7 @@
 			   <div style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem 2rem; min-width: 220px;">
 				   <div style="display: flex; justify-content: space-between; align-items: center;">
 					   <span style="font-weight: 600; color: #333;">Ventas Hoy</span>
-					   <span style="color: #27ae60; font-size: 1.2em;">$</span>
+					   <span class="ventas-hoy" style="color: #27ae60; font-size: 1.2em;">$</span>
 				   </div>
 				   <div style="font-size: 2em; font-weight: bold; margin: 0.5em 0; color: #222;">$2,847</div>
 				   <div style="color: #27ae60; font-size: 0.95em;">↗ +12% desde ayer</div>
@@ -96,6 +96,21 @@
 		   <!-- Pedidos Recientes -->
 		   <div style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem; width: 100%; max-width: 900px; margin-top: 2rem;">
 			   <h3 style="margin-bottom: 1rem; font-size: 1.1em; color: #222;">Pedidos Recientes</h3>
+			   <!-- Barra de búsqueda -->
+<div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+    <input type="text" id="busquedaPedidos" placeholder="Buscar pedido o cliente..." style="padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; width: 220px;">
+    <button onclick="filtrarPedidos()" style="background:#e74c3c; color:#fff; border:none; border-radius:8px; padding:8px 18px; cursor:pointer;">Buscar</button>
+</div>
+<script>
+function filtrarPedidos() {
+    const input = document.getElementById('busquedaPedidos').value.toLowerCase();
+    const filas = document.querySelectorAll('table tbody tr');
+    filas.forEach(fila => {
+        const texto = fila.innerText.toLowerCase();
+        fila.style.display = texto.includes(input) ? '' : 'none';
+    });
+}
+</script>
 			   <table style="width: 100%; border-collapse: collapse; font-size: 0.98em;">
 				   <thead>
 					   <tr style="color: #888; text-align: left;">
@@ -128,10 +143,14 @@
 			   </div>
 			   <div style="flex: 1; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem;">
 				   <h3 style="margin-bottom: 1rem; font-size: 1.1em; color: #222;">Acciones Rápidas</h3>
-				   <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>🍽</span> Gestionar Menú</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>📅</span> Ver Reservas</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>📊</span> Reportes Financieros</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>⚙️</span> Configuración</button>
+				   <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;" onclick="location.href='trabajadores.php'">
+        <span>👥</span> Ver Trabajadores
+    </button>
+    <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;" onclick="location.href='almacen.php'">
+        <span>🍽</span> Gestionar Menú
+    </button>
+   
+   
 			   </div>
 		   </div>
 	   </section>
@@ -173,6 +192,51 @@
 		   });
 	   </script>
 	   <!-- Fin dashboard visual -->
+	   <!-- Notificación toast -->
+<div id="toast" style="display:none;position:fixed;bottom:30px;right:30px;z-index:9999;background:#e74c3c;color:#fff;padding:16px 28px;border-radius:8px;font-size:1.1em;box-shadow:0 2px 8px rgba(0,0,0,0.15);">¡Acción realizada!</div>
+<script>
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(()=>{toast.style.display='none';}, 2500);
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.admin-dashboard-cards div[style*="font-size: 2em"]').forEach(el => {
+        const target = parseInt(el.textContent.replace(/\D/g,''));
+        let count = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+            count += step;
+            if(count >= target) {
+                el.textContent = el.textContent.replace(/\d+/, target);
+                clearInterval(interval);
+            } else {
+                el.textContent = el.textContent.replace(/\d+/, count);
+            }
+        }, 30);
+    });
+});
+</script>
+<script>
+document.getElementById('btn-notificaciones').addEventListener('click', function(e) {
+    e.stopPropagation();
+    const menu = document.getElementById('menu-notificaciones');
+    menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+});
+// Oculta el menú si se hace clic fuera
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('menu-notificaciones');
+    if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+    }
+});
+document.getElementById('menu-notificaciones').addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+</script>
 	   </main>
 </body>
 </html>

@@ -78,6 +78,13 @@
 	background: #fff;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
+.header-admin {
+    background: linear-gradient(90deg, #e74c3c 0%, #f1c40f 100%);
+    color: #fff;
+}
+.header-admin .nombre-header, .header-admin .subnombre-header {
+    color: #fff !important;
+}
 .header-left {
 	display: flex;
 	align-items: center;
@@ -146,4 +153,9 @@
 	color: #333;
 	font-weight: 500;
 	margin-right: 8px;
+}
+.admin-dashboard-cards > div:hover {
+    box-shadow: 0 6px 24px rgba(220,38,38,0.18);
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
 }
