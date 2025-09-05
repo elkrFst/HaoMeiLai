@@ -182,3 +182,49 @@ footer {
     z-index: 2;
     letter-spacing: 0.5px;
 }
+
+.error-floating {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d90427;
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    text-align: center;
+    min-width: 280px;
+    max-width: 90vw;
+}
+
+.success-floating {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #27ae60;
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    text-align: center;
+    min-width: 280px;
+    max-width: 90vw;
+}
+
+.forgot-link {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.forgot-link a {
+    color: #274472;
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
