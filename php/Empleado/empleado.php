@@ -48,30 +48,10 @@
     <!-- CARRITO -->
     <aside class="carrito">
       <h2>Tu Pedido</h2>
-      <div class="item">
-        <span>Rollos</span>
-        <div class="btns">
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
-        </div>
-        <span>$35</span>
-      </div>
-
-      <div class="item">
-        <span>Sushi</span>
-        <div class="btns">
-          <button>-</button>
-          <span>2</span>
-          <button>+</button>
-        </div>
-        <span>$90</span>
-      </div>
-
-      <div class="total">TOTAL: $125.00</div>
-
+      <div id="carrito-items"></div>
+      <div class="total" id="carrito-total">TOTAL: $0.00</div>
       <div class="acciones">
-        <button class="cancelar">Cancelar</button>
+        <button class="cancelar" id="btn-cancelar">Cancelar</button>
         <button class="aceptar">Aceptar</button>
       </div>
     </aside>
@@ -79,10 +59,86 @@
 
   <!-- FOOTER -->
   <footer>
-    <div>🍹 Bebidas</div>
-    <div>🍜 Fideos</div>
-    <div>🍣 Sushi</div>
-    <div>🍰 Postres</div>
+    <div class="footer-item" data-nombre="Bebidas" data-precio="25">🍹 Bebidas</div>
+    <div class="footer-item" data-nombre="Fideos" data-precio="40">🍜 Fideos</div>
+    <div class="footer-item" data-nombre="Sushi" data-precio="45">🍣 Sushi</div>
+    <div class="footer-item" data-nombre="Postres" data-precio="30">🍰 Postres</div>
   </footer>
+  <script>
+    // Productos del menú
+    const productos = [
+      {nombre: "Cerdo Agridulce", precio: 50},
+      {nombre: "Pollo Kung Pao", precio: 55},
+      {nombre: "Chow Mein", precio: 60},
+      {nombre: "Dumplings", precio: 45}
+    ];
+
+    // Carrito
+    let carrito = [];
+
+    // Actualiza el carrito en pantalla
+    function renderCarrito() {
+      const carritoItems = document.getElementById('carrito-items');
+      const carritoTotal = document.getElementById('carrito-total');
+      carritoItems.innerHTML = '';
+      let total = 0;
+      carrito.forEach((item, idx) => {
+        total += item.precio * item.cantidad;
+        carritoItems.innerHTML += `
+          <div class="item">
+            <span>${item.nombre}</span>
+            <div class="btns">
+              <button onclick="cambiarCantidad(${idx}, -1)">-</button>
+              <span>${item.cantidad}</span>
+              <button onclick="cambiarCantidad(${idx}, 1)">+</button>
+            </div>
+            <span>$${item.precio * item.cantidad}</span>
+            <button onclick="eliminarItem(${idx})" style="margin-left:8px;background:#e53935;color:#fff;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;">✖</button>
+          </div>
+        `;
+      });
+      carritoTotal.textContent = `TOTAL: $${total.toFixed(2)}`;
+    }
+
+    // Cambia la cantidad de un producto
+    window.cambiarCantidad = function(idx, cambio) {
+      carrito[idx].cantidad += cambio;
+      if (carrito[idx].cantidad < 1) carrito[idx].cantidad = 1;
+      renderCarrito();
+    }
+
+    // Elimina un producto del carrito
+    window.eliminarItem = function(idx) {
+      carrito.splice(idx, 1);
+      renderCarrito();
+    }
+
+    // Agrega producto al carrito
+    function agregarAlCarrito(nombre, precio) {
+      const idx = carrito.findIndex(item => item.nombre === nombre);
+      if (idx > -1) {
+        carrito[idx].cantidad += 1;
+      } else {
+        carrito.push({nombre, precio, cantidad: 1});
+      }
+      renderCarrito();
+    }
+
+    // Botones del menú
+    document.querySelectorAll('.menu .card button').forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        agregarAlCarrito(productos[i].nombre, productos[i].precio);
+      });
+    });
+
+    // Botón cancelar
+    document.getElementById('btn-cancelar').onclick = function() {
+      carrito = [];
+      renderCarrito();
+    };
+
+    // Inicializa el carrito vacío
+    renderCarrito();
+  </script>
 </body>
 </html>
