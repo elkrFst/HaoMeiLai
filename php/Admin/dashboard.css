@@ -1,0 +1,234 @@
+/* Modal estilos */
+
+.modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 32px 28px;
+    min-width: 320px;
+    max-width: 95vw;
+    font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
+    position: relative;
+    border: 2px solid #f1d48f;
+}
+.modal h3 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #d62828;
+}
+.modal input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #f1d48f;
+    font-size: 1em;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.modal .modal-actions {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #f7f7f7;
+}
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    height: 100vh;
+    background: #706f5f;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+}
+.logo {
+    margin: 30px 0 20px 0;
+    text-align: center;
+}
+.logo img {
+    width: 80px;
+    border-radius: 50%;
+}
+.logo h2 {
+    margin: 10px 0 0 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #d62828;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+.menu li {
+    color: #333333;
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    border-radius: 18px;
+    margin: 10px 12px; /* más espacio vertical */
+    padding: 16px 0;   /* más alto */
+    min-width: 180px;  /* ancho mínimo mayor */
+    font-size: 1.15em; /* fuente más grande */
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+}
+.menu li:hover,
+.menu li.active {
+    background: #f1d48f;
+    color: #d62828;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.menu li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-content {
+    margin-left: 240px;
+    padding: 30px;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #ffffff;
+}
+.section {
+    display: none;
+}
+.section.active {
+    display: block;
+}
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    width: 220px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    border: 2px solid #f1d48f;
+}
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    border-color: #d62828;
+}
+#productos-table-container {
+    margin-top: 30px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+#add-producto-form {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 14px 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+th {
+    background: #f1d48f;
+    color: #333333;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+tr:hover {
+    background: #f5f5f5;
+}
+.paginacion {
+    text-align: center;
+    margin-top: 10px;
+}
+.paginacion button {
+    background: #d62828;
+    color: #fff;
+}
+.paginacion button.active,
+.paginacion button:hover {
+    background: #e6b800;
+    color: #333333;
+}
+button,
+.btn-editar,
+.btn-eliminar,
+.btn-agregar {
+    font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+    border-radius: 22px;
+    padding: 10px 22px;
+    margin: 4px;
+    font-size: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+button {
+    background: #e6b800;
+    color: #333;
+}
+button:hover {
+    background: #d62828;
+    color: #fff;
+}
+.btn-editar {
+    background: #e6b800;
+    color: #333333;
+}
+.btn-editar:hover {
+    background: #d62828;
+    color: #fff;
+}
+.btn-eliminar {
+    background: #d62828;
+    color: #fff;
+}
+.btn-agregar {
+    background: #4caf93;
+    color: #fff;
+}
+.btn-agregar:hover {
+    background: #388e6c;
+}
+.success-msg {
+    background: #4caf93;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}

@@ -1,12 +1,11 @@
+/* Archivo restaurado: Admin.css */
 .admin-dashboard-cards * {
 	font-family: Calibri, Arial, Helvetica, sans-serif !important;
 	font-weight: 400;
 }
-
 .admin-dashboard-visual h3 {
 	color: #d90427bb !important;
 }
-
 .admin-dashboard-visual table {
 	background: #fff;
 	border-radius: 12px;
@@ -30,8 +29,6 @@
 .admin-dashboard-visual table tr:last-child td {
 	border-bottom: none;
 }
-
-/* Colores vivos para etiquetas de estado */
 .admin-dashboard-visual .estado-completado {
 	background: #43ea7c !important;
 	color: #fff !important;
@@ -44,8 +41,6 @@
 	background: #ff3b3b00 !important;
 	color: #fff !important;
 }
-
-/* Colores vivos para botones */
 .admin-dashboard-visual button,
 .admin-dashboard-visual button,
 .admin-dashboard-cards button {
@@ -65,11 +60,6 @@
 .nombre-header {
 	font-family: 'Gian Gothic Sans', Arial, Helvetica, sans-serif;
 }
-
-.admin-dashboard-cards * {
-	font-family: Calibri, Arial, Helvetica, sans-serif !important;
-	font-weight: 400;
-}
 .header-admin {
 	display: flex;
 	justify-content: space-between;
@@ -77,6 +67,13 @@
 	padding: 16px 32px;
 	background: #fff;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.header-admin {
+    background: linear-gradient(90deg, #e74c3c 0%, #f1c40f 100%);
+    color: #fff;
+}
+.header-admin .nombre-header, .header-admin .subnombre-header {
+    color: #fff !important;
 }
 .header-left {
 	display: flex;
@@ -146,4 +143,9 @@
 	color: #333;
 	font-weight: 500;
 	margin-right: 8px;
+}
+.admin-dashboard-cards > div:hover {
+    box-shadow: 0 6px 24px rgba(220,38,38,0.18);
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
 }

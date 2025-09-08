@@ -1,0 +1,66 @@
+body {
+            margin: 0;
+            padding: 0;
+            background: url('../imagenes/fondo-fuego.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+       .menu-container {
+    display: grid;
+    grid-template-columns: repeat(3, 180px); /* 3 columnas fijas de 180px */
+    justify-content: center; /* centra el grid dejando espacio a los lados */
+    gap: 32px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.menu-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    text-align: left;
+    padding: 0 0 18px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+        .menu-card img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            margin-bottom: 0;
+            display: block;
+        }
+        .menu-card h3 {
+            font-size: 1em;
+            margin: 10px 0 4px 10px;
+            font-weight: 600;
+            color: #222;
+            align-self: flex-start;
+        }
+        .menu-card p {
+            font-size: 0.85em;
+            margin: 0 10px 6px 10px;
+            color: #555;
+            align-self: flex-start;
+        }
+        .menu-card span {
+            font-size: 0.9em;
+        }
+        /* Responsividad para menú de platillos */
+@media (max-width: 700px) {
+    .menu-container {
+        gap: 14px;
+        padding: 0 4px;
+    }
+    .menu-card {
+        width: 90vw;
+        max-width: 170px;
+    }
+}

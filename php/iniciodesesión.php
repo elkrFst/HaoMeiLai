@@ -1,31 +1,47 @@
 <?php
 session_start();
-require 'conexion.php'; // <-- Corrección aquí
+require '../conexion.php';
+
+$error_email = '';
+$error_password = '';
+$error_login = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $valid = true;
 
-    $sql = "SELECT * FROM usuarios WHERE email = ? AND contraseña = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $email, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($row = $result->fetch_assoc()) {
-        $_SESSION['usuario'] = $row['nombre'];
-        $_SESSION['rol'] = $row['rol'];
-        if ($row['rol'] === 'admin') {
-            header("Location: Admin/indexadmin.php");
-        } else {
-            header("Location: indexusuario.php");
-        }
-        exit();
-    } else {
-        echo "<script>alert('Correo o contraseña incorrectos'); window.location.href='iniciodesesión.php';</script>";
+    if (empty($email)) {
+        $error_email = "El correo es obligatorio.";
+        $valid = false;
     }
-    $stmt->close();
-    $conn->close();
+    if (empty($password)) {
+        $error_password = "La contraseña es obligatoria.";
+        $valid = false;
+    }
+
+    if ($valid) {
+        $sql = "SELECT * FROM usuarios WHERE email = ? AND contraseña = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $_SESSION['usuario'] = $row['nombre'];
+            $_SESSION['rol'] = $row['rol'];
+            if ($row['rol'] === 'admin') {
+                header("Location: Admin/dashboard.php");
+            } else {
+                header("Location: ../index.php");
+            }
+            exit();
+        } else {
+            $error_login = "Correo o contraseña incorrectos.";
+        }
+        $stmt->close();
+        $conn->close();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -34,41 +50,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Iniciar Sesión - Hao Mei Lai</title>
     <link rel="stylesheet" href="../css/stylelogin.css">
+    <style>
+        .error-msg { color: #d90427; font-size: 0.95em; margin-top: 4px; }
+    </style>
 </head>
-<body style="background: url('../imagenes/fondo comida.jpg')">
+<body style="background: url('../imagenes/fondo comida.jpg') no-repeat center center fixed; background-size: cover;">
+    <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exito'): ?>
+        <div class="success-floating">
+            Registro completado con éxito
+        </div>
+    <?php endif; ?>
+    <?php if ($error_email || $error_password || $error_login): ?>
+        <div class="error-floating">
+            <?= $error_email ?: ($error_password ?: $error_login) ?>
+        </div>
+    <?php endif; ?>
     <div class="login-bg">
         <div class="login-container">
             <div class="login-logo">
-                <img src="../imagenes/logo comida.png"alt="Hao Mei Lai Logo">
+                <img src="../imagenes/logo comida.png" alt="Hao Mei Lai Logo">
             </div>
             <h2>Bienvenido</h2>
             <p class="login-subtitle">Inicia sesión con tu cuenta</p>
             <form action="iniciodesesión.php" method="post">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                
+                <input type="email" id="email" name="email" required>
+
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="********" required>
-                
-                <div class="login-options">
-                    <label class="remember">
-                        <input type="checkbox" name="remember"> Recordar sesión
-                    </label>
-                    <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
-                </div>
-                
-                    <button type="submit" class="btn-login">Iniciar Sesión</button>
-                    <!-- El botón ahora envía el formulario a procesar_login.php -->
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
             <div class="divider"></div>
             <button class="btn-register" onclick="window.location.href='registro.php'">Crear Nueva Cuenta</button>
-            <div class="login-help">
-                <span>¿Necesitas ayuda? <a href="#">Contáctanos</a></span>
-            </div>
-            <div class="login-info">
-                <span>🍜 Auténtica comida china tradicional</span><br>
-                <span>🕒 Lun-Dom: 11:00 AM - 10:00 PM</span>
-            </div>
+            <p class="forgot-link">
+                <a href="recuperar_contraseña.php">¿Olvidaste tu contraseña?</a>
+            </p>
         </div>
         <footer>
             © 2024 Hao Mei Lai. Todos los derechos reservados.
