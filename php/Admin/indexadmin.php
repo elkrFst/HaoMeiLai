@@ -53,7 +53,7 @@
 					   <span style="font-weight: 600; color: #333;">Pedidos Hoy</span>
 					   <span style="color: #3f51b5; font-size: 1.2em;">&#128722;</span>
 				   </div>
-				   <div style="font-size: 2em; font-weight: bold; margin: 0.5em 0; color: #222;">147</div>
+				   <div style="font-size: 2em; font-weight: bold; margin: 0.5em 0; color: #222;">$2,847</div>
 				   <div style="color: #3f51b5; font-size: 0.95em;">🕒 8 en preparación</div>
 			   </div>
 			   <div style="background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem 2rem; min-width: 220px;">
@@ -128,10 +128,21 @@
 			   </div>
 			   <div style="flex: 1; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1.5rem;">
 				   <h3 style="margin-bottom: 1rem; font-size: 1.1em; color: #222;">Acciones Rápidas</h3>
-				   <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>🍽</span> Gestionar Menú</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>📅</span> Ver Reservas</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>📊</span> Reportes Financieros</button>
-				   <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;"><span>⚙️</span> Configuración</button>
+				   <button style="width:100%; background:#e74c3c; color: #222; border:none; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;">
+        <span>🍽</span> Gestionar Menú
+    </button>
+    <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;">
+        <span>📅</span> Ver Reservas
+    </button>
+    <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;">
+        <span>📊</span> Reportes Financieros
+    </button>
+    <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; margin-bottom:8px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;" onclick="location.href='empleados.php'">
+        <span>👔</span> Empleados
+    </button>
+    <button style="width:100%; background:#fff; color:#e74c3c; border:1px solid #e74c3c; border-radius:8px; padding:8px 0 8px 16px; font-size:0.98em; display:flex; align-items:center; gap:8px; justify-content:flex-start;">
+        <span>⚙️</span> Configuración
+    </button>
 			   </div>
 		   </div>
 	   </section>

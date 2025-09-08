@@ -1,4 +1,5 @@
 <?php
+session_start();
 // PHP para el header del restaurante
 $site_name = "Hao Mei Lai"; // Nombre del restaurante
 $site_desc = "Auténtica Comida China"; // Descripción del restaurante
@@ -35,6 +36,13 @@ $logo_url = "../imagenes/logo comida.png"; // Icono de un dragón, un enlace ext
             </nav>
         </div>
         <div class="header-right">
+            <div class="user-info">
+                <?php
+                if (isset($_SESSION['usuario'])) {
+                    echo '<span>👤 ' . htmlspecialchars($_SESSION['usuario']) . '</span>';
+                }
+                ?>
+            </div>
             <button class="cart-btn">
                 <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 16h9.45c.75 0 1.41-.41 1.75-1.03l3.24-5.88a1 1 0 0 0-.87-1.47H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 19.37 5.48 21 7 21h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.24-5.88a1 1 0 0 0-.87-1.47H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 19.37 5.48 21 7 21h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63z"/></svg>
                 Ordenar
