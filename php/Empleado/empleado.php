@@ -10,16 +10,16 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header>
-    <img src="../../imagenes/logo comida.png" alt="Logo">
-    <div class="user">JUAN 👤</div>
+  <header style="padding: 8px 16px; display: flex; align-items: center; background: #fff;">
+    <img src="../../imagenes/logo comida.png" alt="Logo" style="height: 40px;">
+    <div class="user" style="margin-left: 12px; font-size: 1em;">JUAN 👤</div>
     <div id="ver-todo" style="margin-left:auto;">
-      <button onclick="renderMenu()" style="padding:8px 20px; background:#e53935; color:#fff; border:none; border-radius:6px; cursor:pointer;">Ver todo</button>
+      <button onclick="renderMenu()" style="padding:6px 16px; background:#e53935; color:#fff; border:none; border-radius:6px; cursor:pointer;">Ver todo</button>
     </div>
   </header>
-
+    
   <!-- LAYOUT -->
-  <main>
+  <main style="padding-bottom: 70px;">
     <!-- MENÚ DE PRODUCTOS -->
     <section class="menu" id="menu-productos">
       <div class="card">
@@ -162,14 +162,26 @@
     </aside>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- FOOTER FIJO DE CATEGORÍAS -->
+  <nav class="categorias-menu" style="
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: transparent; /* Fondo totalmente transparente */
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    padding: 12px 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    z-index: 100;
+  ">
     <div class="footer-item" data-nombre="Bebidas" data-precio="25">🍹 Bebidas</div>
     <div class="footer-item" data-nombre="Fideos" data-precio="40">🍜 Fideos</div>
     <div class="footer-item" data-nombre="Platillos" data-precio="45">🍣 Platillos</div>
     <div class="footer-item" data-nombre="Postres" data-precio="30">🍰 Postres</div>
+  </nav>
 
-  </footer>
   <script>
   const productos = [
     {nombre: "Cerdo Agridulce", precio: 50, categoria: "Platillos", img: "../../imagenes/plato1.jpeg", desc: "Sabor agridulce con verduras y carne."},

@@ -42,6 +42,7 @@ main {
   grid-template-columns: 3fr 1fr;  /* menú más ancho que carrito */
   gap: 24px;
   padding: 24px;
+  padding-bottom: 70px; /* Ajusta el valor según el alto del menú fijo */
 }
 
 /* MENÚ */
@@ -113,6 +114,7 @@ main {
   border-left: 4px solid #e53935;
   border-radius: 10px;
   padding: 18px;
+  padding-bottom: 90px; /* Ajusta el valor según el alto del footer fijo */
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
@@ -203,11 +205,14 @@ main {
 
 /* FOOTER */
 footer {
-  background: #fff;
+  background: #f6f8fa;
   border-top: 2px solid #e53935;
-  padding: 14px;
+  padding: 18px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
 }
 
 footer div {
@@ -221,6 +226,56 @@ footer div:hover {
   color: #b71c1c;
 }
 
+.footer-item {
+  min-width: 120px;
+  min-height: 60px;
+  background: #fff;
+  color: #e53935;
+  font-size: 1.08em;
+  font-weight: 600;
+  border: 2px solid #e53935;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.footer-item:hover,
+.footer-item:focus {
+  background: #e53935;
+  color: #fff;
+  border-color: #b71c1c;
+  box-shadow: 0 4px 12px rgba(229,57,53,0.12);
+}
+
+.categorias-menu {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: transparent; /* Sin fondo */
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 12px 0;
+  box-shadow: none; /* Sin sombra */
+  z-index: 100;
+  pointer-events: none; /* Permite que los botones debajo sean clickeables */
+}
+
+.categorias-menu .footer-item {
+  pointer-events: auto; /* Los cuadritos sí son clickeables */
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   main {
@@ -229,5 +284,16 @@ footer div:hover {
   .carrito {
     border-left: none;
     border-top: 4px solid #e53935;
+  }
+  .footer-item {
+    padding: 10px 12px;
+    font-size: 0.95em;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 1199px) {
+  footer {
+    display: none !important;
   }
 }
