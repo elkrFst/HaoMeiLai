@@ -163,7 +163,7 @@
   </main>
 
   <!-- FOOTER FIJO DE CATEGORÍAS -->
-  <nav class="categorias-menu" style="
+  <nav class="categorias-menu" style="     
     position: fixed;
     left: 0;
     bottom: 0;
