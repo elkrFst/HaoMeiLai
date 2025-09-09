@@ -1,4 +1,5 @@
 <?php
+session_start();
 // PHP para el header del restaurante
 $site_name = "Hao Mei Lai"; // Nombre del restaurante
 $site_desc = "Auténtica Comida China"; // Descripción del restaurante
@@ -53,6 +54,59 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
         font-size: 1.18em;
         margin-bottom: 8px;
     }
+    .dashboard {
+        position: relative;
+        display: inline-block;
+    }
+    .dashboard-menu {
+        display: none;
+        position: absolute;
+        top: 48px;
+        right: 0;
+        min-width: 180px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+        border: 2px solid #ffd700;
+        z-index: 100;
+        padding: 10px 0;
+        transition: box-shadow 0.2s, border 0.2s;
+    }
+    .dashboard-menu a {
+        display: block;
+        padding: 12px 24px;
+        color: #b30000;
+        text-decoration: none;
+        font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+        font-size: 1.08em;
+        border-radius: 8px;
+        margin: 2px 10px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .dashboard-menu a:hover {
+        background: #ffd700;
+        color: #333;
+    }
+    .dashboard-icon {
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 12px;
+        transition: background 0.2s;
+    }
+    .dashboard-icon:focus {
+        outline: none;
+        background: #f1d48f;
+    }
+    @media (max-width: 768px) {
+        .menu-categorias {
+            flex-direction: column;
+            align-items: center;
+        }
+        .icon-btn-menu {
+            width: 90%;
+            max-width: 300px;
+        }
+    }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($site_name); ?> - Comida China</title>
@@ -93,7 +147,11 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
                     <a href="#perfil">Perfil</a>
                     <a href="#pedidos">Mis pedidos</a>
                     <a href="#ayuda">Ayuda</a>
-                    <a href="php/iniciodesesión.php">iniciar sesion</a>
+                    <?php if (empty($_SESSION['usuario'])): ?>
+                        <a href="php/iniciodesesión.php">Iniciar sesión</a>
+                    <?php else: ?>
+                        <a href="php/cerrarsesion.php">Cerrar sesión</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -220,5 +278,22 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
             <span> | <a href="#">Privacidad de datos</a> | <a href="#">Términos y condiciones</a> | <a href="#">Promociones</a></span>
         </div>
     </footer>
+    <script>
+    // Solución para el menú desplegable del dashboard
+    function toggleDashboardMenu() {
+        var menu = document.getElementById('dashboardMenu');
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'block';
+        }
+    }
+    function hideDashboardMenu() {
+        setTimeout(function() {
+            var menu = document.getElementById('dashboardMenu');
+            menu.style.display = 'none';
+        }, 200);
+    }
+    </script>
 </body>
 </html>
