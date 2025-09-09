@@ -166,23 +166,23 @@
   <footer>
     <div class="footer-item" data-nombre="Bebidas" data-precio="25">🍹 Bebidas</div>
     <div class="footer-item" data-nombre="Fideos" data-precio="40">🍜 Fideos</div>
-    <div class="footer-item" data-nombre="Sushi" data-precio="45">🍣 Sushi</div>
+    <div class="footer-item" data-nombre="Platillos" data-precio="45">🍣 Platillos</div>
     <div class="footer-item" data-nombre="Postres" data-precio="30">🍰 Postres</div>
 
   </footer>
   <script>
   const productos = [
-    {nombre: "Cerdo Agridulce", precio: 50, categoria: "Plato", img: "../../imagenes/plato1.jpeg", desc: "Sabor agridulce con verduras y carne."},
-    {nombre: "Pollo Kung Pao", precio: 55, categoria: "Plato", img: "../../imagenes/plato2.jpeg", desc: "Pollo con cacahuates y salsa picante."},
+    {nombre: "Cerdo Agridulce", precio: 50, categoria: "Platillos", img: "../../imagenes/plato1.jpeg", desc: "Sabor agridulce con verduras y carne."},
+    {nombre: "Pollo Kung Pao", precio: 55, categoria: "Platillos", img: "../../imagenes/plato2.jpeg", desc: "Pollo con cacahuates y salsa picante."},
     {nombre: "Chow Mein", precio: 60, categoria: "Fideos", img: "../../imagenes/plato3.jpeg", desc: "Fideos fritos con verduras y pollo."},
     {nombre: "Dumplings", precio: 45, categoria: "Dumplings", img: "../../imagenes/comida 5.jpg", desc: "Dumplings al vapor rellenos de carne y verduras."},
     {nombre: "Sopa Wantán", precio: 35, categoria: "Sopa", img: "../../imagenes/comida6.jpeg", desc: "Sopa caliente con wantanes y verduras."},
     {nombre: "Arroz Frito", precio: 40, categoria: "Fideos", img: "../../imagenes/comida7.jpeg", desc: "Arroz salteado con huevo, verduras y pollo."},
-    {nombre: "Pato Pekín", precio: 80, categoria: "Plato", img: "../../imagenes/comida8.jpeg", desc: "Pato crujiente servido con crepas y salsa hoisin."},
-    {nombre: "Tofu Mapo", precio: 50, categoria: "Plato", img: "../../imagenes/comida9.jpeg", desc: "Tofu en salsa picante con carne molida."},
-    {nombre: "Chop suey", precio: 55, categoria: "Plato", img: "../../imagenes/comida10.jpeg", desc: "Trozos de carne con vegetales y brotes de judía Muing."},
+    {nombre: "Pato Pekín", precio: 80, categoria: "Platillos", img: "../../imagenes/comida8.jpeg", desc: "Pato crujiente servido con crepas y salsa hoisin."},
+    {nombre: "Tofu Mapo", precio: 50, categoria: "Platillos", img: "../../imagenes/comida9.jpeg", desc: "Tofu en salsa picante con carne molida."},
+    {nombre: "Chop suey", precio: 55, categoria: "Platillos", img: "../../imagenes/comida10.jpeg", desc: "Trozos de carne con vegetales y brotes de judía Muing."},
     {nombre: "Wonton soup", precio: 30, categoria: "Sopa", img: "../../imagenes/comida11.jpeg", desc: "Saquitos de harina rellenos de cerdo o camarón con verduras."},
-    {nombre: "CHAR SIU", precio: 70, categoria: "Plato", img: "../../imagenes/comida12.jpeg", desc: "Tofu rojo fermentado, miel y arroz o fideos, o como relleno de bollos al vapor."},
+    {nombre: "CHAR SIU", precio: 70, categoria: "Platillos", img: "../../imagenes/comida12.jpeg", desc: "Tofu rojo fermentado, miel y arroz o fideos, o como relleno de bollos al vapor."},
     {nombre: "SIU MAI", precio: 45, categoria: "Dumplings", img: "../../imagenes/comida13.jpeg", desc: "Dumpling abierto al estilo cantones, con una envoltura de masa de wonton con un relleno de carne de cerdo y pollo, camarón."},
     {nombre: "Baijiu", precio: 25, categoria: "Bebidas", img: "../../imagenes/bebida.jpeg", desc: "Licor nacional, destilado de grano de color claro, principalmente de sorgo, pero también de cereales como arroz, trigo y maíz."},
     {nombre: "Vino Osmanthus", precio: 30, categoria: "Bebidas", img: "../../imagenes/bebida1.jpeg", desc: "Bebida alcohólica tradicional china elaborada con flores dulces de osmanto."},
