@@ -148,8 +148,6 @@
 
     </section>
 
-    
-
     <!-- CARRITO -->
     <aside class="carrito">
       <h2>Tu Pedido</h2>
