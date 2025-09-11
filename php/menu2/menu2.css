@@ -1,66 +1,313 @@
-body {
-            margin: 0;
-            padding: 0;
-            background: url('../imagenes/fondo-fuego.jpg') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-       .menu-container {
-    display: grid;
-    grid-template-columns: repeat(3, 180px); /* 3 columnas fijas de 180px */
-    justify-content: center; /* centra el grid dejando espacio a los lados */
-    gap: 32px;
-    margin: 40px auto;
-    padding: 0 20px;
+:root {
+    --primary-red: #f44336;
+    --dark-red: #d32f2f;
+    --text-color: #333;
+    --light-grey: #e0e0e0;
+    --background-grey: #f5f5f5;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.menu-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-    text-align: left;
-    padding: 0 0 18px 0;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
     margin: 0;
+    padding: 0;
+    /* Fondo con patrón rojo */
+    background-color: var(--primary-red);
+    background-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill="%23d32f2f" d="M0 0h1v16H0V0zm15 0h1v16h-1V0zM8 0h1v16H8V0zM0 8h16v1H0V8zM0 15h16v1H0v-1zM0 0h16v1H0V0zm15 0v16h1V0h-1zm-7-1v18h1V-1h-1zM0 8h16v1H0V8zM-1 15h18v1H-1v-1z"/%3E%3C/svg%3E');
+    background-repeat: repeat;
+    background-size: 16px;
+    background-attachment: fixed;
+}
+
+/* --- Estilos del Encabezado --- */
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: #fff;
+    border-bottom: 1px solid var(--light-grey);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-link {
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-title-group {
+    text-align: center;
+}
+
+.header-subtitle {
+    font-size: 14px;
+    color: #888;
+    display: block;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+}
+
+/* --- Estilos de la barra de búsqueda y filtros --- */
+.search-and-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    background-color: #fff;
+    border: 1px solid var(--light-grey);
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar i {
+    color: #999;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+.filters-btn {
+    background-color: #fff;
+    border: 1px solid var(--light-grey);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #999;
+}
+
+/* --- Estilos de las categorías --- */
+.categories {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 5%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+}
+
+.category-item {
+    background-color: #fff;
+    color: #666;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid var(--light-grey);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.category-item.active {
+    background-color: var(--primary-red);
+    color: #fff;
+    border-color: var(--primary-red);
+}
+
+/* --- Estilos del Contenedor del Menú (Cuadrícula) --- */
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Estilos de las Tarjetas de Platillos --- */
+.menu-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: 1px solid #eee;
-    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-        .menu-card img {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
-            margin-bottom: 0;
-            display: block;
-        }
-        .menu-card h3 {
-            font-size: 1em;
-            margin: 10px 0 4px 10px;
-            font-weight: 600;
-            color: #222;
-            align-self: flex-start;
-        }
-        .menu-card p {
-            font-size: 0.85em;
-            margin: 0 10px 6px 10px;
-            color: #555;
-            align-self: flex-start;
-        }
-        .menu-card span {
-            font-size: 0.9em;
-        }
-        /* Responsividad para menú de platillos */
-@media (max-width: 700px) {
-    .menu-container {
-        gap: 14px;
-        padding: 0 4px;
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.item-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.item-rating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.item-rating i {
+    color: #ffc107;
+}
+
+.item-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.item-tag.picante {
+    background-color: #e53935;
+}
+
+.item-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.item-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-red);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.item-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.item-time {
+    font-size: 14px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-to-cart-btn {
+    background-color: var(--primary-red);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--dark-red);
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn i {
+    margin-right: 5px;
+}
+
+/* --- Media Queries (Responsividad) --- */
+@media (max-width: 768px) {
+    .header-main {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 5%;
     }
-    .menu-card {
-        width: 90vw;
-        max-width: 170px;
+    .header-link {
+        font-size: 14px;
+    }
+    .header-main .back-btn,
+    .header-main .cart-btn {
+        position: absolute;
+        top: 15px;
+    }
+    .header-main .back-btn { left: 15px; }
+    .header-main .cart-btn { right: 15px; }
+
+    .search-and-filters {
+        flex-wrap: wrap;
+        padding: 15px 5%;
+    }
+
+    .categories {
+        justify-content: flex-start;
     }
 }
