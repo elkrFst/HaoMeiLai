@@ -253,9 +253,18 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
       <div class="modal-header"><h5 class="modal-title">Agregar Producto</h5></div>
       <div class="modal-body">
         <input type="hidden" name="accion" value="agregar">
-        <div class="mb-2"><input type="text" name="producto" class="form-control" placeholder="Producto" required></div>
-        <div class="mb-2"><input type="number" step="0.01" name="precio" class="form-control" placeholder="Precio" required></div>
-        <div class="mb-2"><input type="number" name="stock" class="form-control" placeholder="Stock" required></div>
+        <div class="mb-2">
+          <label for="producto">Producto</label>
+          <input type="text" name="producto" id="producto" class="form-control" required>
+        </div>
+        <div class="mb-2">
+          <label for="precio">Precio</label>
+          <input type="number" step="0.01" name="precio" id="precio" class="form-control" required>
+        </div>
+        <div class="mb-2">
+          <label for="stock">Stock</label>
+          <input type="number" name="stock" id="stock" class="form-control" required>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
@@ -337,10 +346,12 @@ function eliminarProducto(id) {
     modal.show();
 }
 function changePage(page) {
-    window.location.href = '?page=' + page;
+    window.location.href = '?page=' + page + '&section=almacen';
 }
 window.onload = function() {
-    showSection('dashboard');
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get('section') || 'dashboard';
+    showSection(section);
 };
 </script>
 </body>
