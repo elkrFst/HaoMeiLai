@@ -132,7 +132,7 @@
       <div class="card">
         <img src="../../imagenes/plato1.jpeg" alt="Cerdo agridulce">
         <h3>Cerdo Agridulce</h3>
-        <p>Sabor agridulce con verduras y carne.</p>
+        <p>Sabor agridulce con verduras и carne.</p>
         <button onclick="agregarAlCarrito('Cerdo Agridulce', 50)">Agregar</button>
       </div>
       <div class="card">
@@ -259,7 +259,7 @@
       <div class="total" id="carrito-total">TOTAL: $0.00</div>
       <div class="acciones">
         <button class="cancelar" id="btn-cancelar">Cancelar</button>
-        <button class="aceptar">Aceptar</button>
+        <button class="aceptar" onclick="procesarPago()">Aceptar</button>
       </div>
     </aside>
   </main>
@@ -403,6 +403,28 @@
   // Inicializa mostrando todo el menú
   renderMenu();
   renderCarrito();
+
+  // FUNCIÓN PARA PROCESAR PAGO - AGREGADA AL FINAL
+  function procesarPago() {
+    if (carrito.length === 0) {
+      alert('Por favor, agrega al menos un producto al carrito.');
+      return;
+    }
+    
+    // Convertir carrito a JSON y enviar por formulario
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'pago.php';
+    
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'carrito';
+    input.value = JSON.stringify(carrito);
+    form.appendChild(input);
+    
+    document.body.appendChild(form);
+    form.submit();
+  }
   </script>
 </body>
 </html>
