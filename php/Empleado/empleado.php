@@ -7,19 +7,73 @@
   <meta charset="UTF-8">
   <title>Menú Restaurante</title>
   <link rel="stylesheet" href="../../css/Empleado.css"> <!-- enlazado -->
+  <style>
+    /* Estilo para la lupa en el buscador */
+    .search-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    
+    .search-container input {
+      padding: 8px 35px 8px 12px;
+      width: 300px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    
+    .search-icon {
+      position: absolute;
+      right: calc(50% - 150px + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
   <!-- HEADER -->
-  <header>
-    <img src="../../imagenes/logo comida.png" alt="Logo">
-    <div class="user">JUAN 👤</div>
+  <header style="padding: 8px 16px; background: #fff; display: flex; align-items: center; justify-content: center; position: relative; flex-wrap: wrap; min-height: 70px;">
+    <!-- LOGO Y USUARIO (MOVIDO A LA IZQUIERDA) -->
+    <div style="display: flex; align-items: center; position: absolute; left: 16px;">
+      <img src="../../imagenes/logo comida.png" alt="Logo" style="height: 40px;">
+      <div class="user" style="margin-left: 12px; font-size: 1em;">JUAN 👤</div>
+    </div>
+    
+    <!-- CUADRITOS DE CATEGORÍA SIEMPRE CENTRADOS -->
+    <div id="categorias-cuadros" style="
+      display: flex; 
+      gap: 12px; 
+      position: absolute; 
+      left: 50%; 
+      transform: translateX(-50%);
+      top: 50%; 
+      z-index: 2;
+      background: transparent;
+    ">
+      <button class="categoria-cuadro" data-categoria="Bebidas" style="padding:8px 18px; border-radius:10px; border:1px solid #e53935; background:#fff; cursor:pointer; font-size:1em;">🍹 Bebidas</button>
+      <button class="categoria-cuadro" data-categoria="Fideos" style="padding:8px 18px; border-radius:10px; border:1px solid #e53935; background:#fff; cursor:pointer; font-size:1em;">🍜 Fideos</button>
+      <button class="categoria-cuadro" data-categoria="Platillos" style="padding:8px 18px; border-radius:10px; border:1px solid #e53935; background:#fff; cursor:pointer; font-size:1em;">🍣 Platillos</button>
+      <button class="categoria-cuadro" data-categoria="Postres" style="padding:8px 18px; border-radius:10px; border:1px solid #e53935; background:#fff; cursor:pointer; font-size:1em;">🍰 Postres</button>
+    </div>
+    
+    <!-- BOTÓN VER TODO -->
     <div id="ver-todo" style="margin-left:auto;">
-      <button onclick="renderMenu()" style="padding:8px 20px; background:#e53935; color:#fff; border:none; border-radius:6px; cursor:pointer;">Ver todo</button>
+      <button onclick="renderMenu()" style="padding:6px 16px; background:#e53935; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+        👀 Ver todo
+      </button>
     </div>
   </header>
 
+  <!-- BUSCADOR CON LUPITA -->
+  <div class="search-container">
+    <input type="text" id="buscador" placeholder="Buscar en el menú...">
+    <div class="search-icon">🔍</div>
+  </div>
+
   <!-- LAYOUT -->
-  <main>
+  <main style="padding-bottom: 70px;">
     <!-- MENÚ DE PRODUCTOS -->
     <section class="menu" id="menu-productos">
       <div class="card">
@@ -143,12 +197,7 @@
         <p>Crepe chino relleno de huevo, cebollín, cilantro y salsas.</p>
         <button onclick="agregarAlCarrito('Jiānbing', 40)">Agregar</button>
       </div>
-      
-
-
     </section>
-
-    
 
     <!-- CARRITO -->
     <aside class="carrito">
@@ -162,14 +211,6 @@
     </aside>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-item" data-nombre="Bebidas" data-precio="25">🍹 Bebidas</div>
-    <div class="footer-item" data-nombre="Fideos" data-precio="40">🍜 Fideos</div>
-    <div class="footer-item" data-nombre="Platillos" data-precio="45">🍣 Platillos</div>
-    <div class="footer-item" data-nombre="Postres" data-precio="30">🍰 Postres</div>
-
-  </footer>
   <script>
   const productos = [
     {nombre: "Cerdo Agridulce", precio: 50, categoria: "Platillos", img: "../../imagenes/plato1.jpeg", desc: "Sabor agridulce con verduras y carne."},
@@ -196,19 +237,30 @@
 
   let carrito = [];
 
-  // Renderiza el menú (todas o filtradas)
-  function renderMenu(categoria = null) {
+  // Renderiza el menú (todas, filtradas o por búsqueda)
+  function renderMenu(categoria = null, busqueda = '') {
     const menu = document.getElementById('menu-productos');
     const verTodo = document.getElementById('ver-todo');
     menu.innerHTML = '';
-    let filtrados = categoria ? productos.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase()) : productos;
+    let filtrados = productos;
+
+    if (categoria) {
+      filtrados = filtrados.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
+    }
+    if (busqueda) {
+      filtrados = filtrados.filter(p => 
+        p.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+        p.desc.toLowerCase().includes(busqueda.toLowerCase())
+      );
+    }
+
     filtrados.forEach((p, i) => {
       menu.innerHTML += `
         <div class="card">
           <img src="${p.img}" alt="${p.nombre}">
           <h3>${p.nombre}</h3>
           <p>${p.desc}</p>
-          <button onclick="agregarAlCarrito('${p.nombre}', ${p.precio})">Agregar</button>
+          <button onclick="agregarAlCarrito('${p.nombre}', ${p.precio})">🛒 Agregar</button>
         </div>
       `;
     });
@@ -260,12 +312,17 @@
     renderCarrito();
   }
 
-  // Footer: filtra menú por categoría
-  document.querySelectorAll('.footer-item').forEach(el => {
-    el.addEventListener('click', () => {
-      const categoria = el.getAttribute('data-nombre');
-      renderMenu(categoria);
+  // Cuadritos de categoría arriba en el header
+  document.querySelectorAll('.categoria-cuadro').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const categoria = btn.getAttribute('data-categoria');
+      renderMenu(categoria, document.getElementById('buscador').value);
     });
+  });
+
+  // Buscador
+  document.getElementById('buscador').addEventListener('input', function() {
+    renderMenu(null, this.value);
   });
 
   document.getElementById('btn-cancelar').onclick = function() {
@@ -276,6 +333,6 @@
   // Inicializa mostrando todo el menú
   renderMenu();
   renderCarrito();
-</script>
+  </script>
 </body>
 </html>
