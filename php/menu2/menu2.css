@@ -284,6 +284,36 @@ body {
     margin-right: 5px;
 }
 
+/* --- Estilos para productos sin stock --- */
+.out-of-stock {
+    opacity: 0.7;
+    position: relative;
+}
+
+.out-of-stock::after {
+    content: "Sin stock";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(244, 67, 54, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.add-to-cart-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.add-to-cart-btn:disabled:hover {
+    background-color: #ccc;
+    transform: none;
+}
+
 /* --- Media Queries (Responsividad) --- */
 @media (max-width: 768px) {
     .header-main {
