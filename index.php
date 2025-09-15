@@ -190,21 +190,21 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
             <h2 style="text-align:center; color: #b30000; margin-top:18px;">Top 3 más comprados</h2>
             <div class="menu-top3" style="display:flex;justify-content:center;gap:38px;flex-wrap:wrap;">
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes2/chow_mein.jpg" alt="Chow Mein" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes_productos/chow_mein.jpg" alt="Chow Mein" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Chow Mein</h3>
                         <p>Fideos salteados con verduras y salsa especial. ¡El más pedido!</p>
                     </div>
                 </div>
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes2/rollitos_primavera.jpg" alt="Rollitos Primavera" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes_productos/rollitos_primavera.jpg" alt="Rollitos Primavera" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Rollitos Primavera</h3>
                         <p>Crujientes rollos rellenos de vegetales frescos. ¡Clásico favorito!</p>
                     </div>
                 </div>
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes2/pollo_gongbao.jpg" alt="Pollo Gongbao" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes_productos/pollo_gongbao.jpg" alt="Pollo Gongbao" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Pollo Gongbao</h3>
                         <p>Pollo salteado con cacahuate y salsa picante. ¡Top ventas!</p>
