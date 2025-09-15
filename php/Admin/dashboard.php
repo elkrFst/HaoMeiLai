@@ -249,7 +249,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
 <!-- Modal Agregar -->
 <div class="modal fade" id="modalAgregar" tabindex="-1">
   <div class="modal-dialog">
-    <form class="modal-content" method="POST" action="producto_accion.php">
+    <form class="modal-content" method="POST" action="producto_accion.php" enctype="multipart/form-data">
       <div class="modal-header"><h5 class="modal-title">Agregar Producto</h5></div>
       <div class="modal-body">
         <input type="hidden" name="accion" value="agregar">
@@ -265,6 +265,10 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
           <label for="stock">Stock</label>
           <input type="number" name="stock" id="stock" class="form-control" required>
         </div>
+        <div class="mb-2">
+          <label for="imagen">Imagen</label>
+          <input type="file" name="imagen" id="imagen" class="form-control" accept="image/*">
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
@@ -277,7 +281,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
 <!-- Modal Editar -->
 <div class="modal fade" id="modalEditar" tabindex="-1">
   <div class="modal-dialog">
-    <form class="modal-content" method="POST" action="producto_accion.php">
+    <form class="modal-content" method="POST" action="producto_accion.php" enctype="multipart/form-data">
       <div class="modal-header"><h5 class="modal-title">Editar Producto</h5></div>
       <div class="modal-body">
         <input type="hidden" name="accion" value="editar">
@@ -285,6 +289,10 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         <div class="mb-2"><input type="text" name="producto" id="editProducto" class="form-control" required></div>
         <div class="mb-2"><input type="number" step="0.01" name="precio" id="editPrecio" class="form-control" required></div>
         <div class="mb-2"><input type="number" name="stock" id="editStock" class="form-control" required></div>
+        <div class="mb-2">
+          <label for="editImagen">Imagen (opcional)</label>
+          <input type="file" name="imagen" id="editImagen" class="form-control" accept="image/*">
+        </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Actualizar</button>
