@@ -146,6 +146,7 @@ $platos = [
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <body>
 
     <header class="header-main">
@@ -254,8 +255,65 @@ $platos = [
             <p>Trozos de carne con vegetales como cebolla, apio, pimientos y brotes de judía Mung.</p>
         </div>
        
+=======
+<body>
+>>>>>>> 9a73ca4bbac16431cf275295ade8bfb839602ffc
 
+    <header class="header-main">
+        <a href="../../index.php" class="header-link back-btn"><i class="fas fa-arrow-left"></i> Volver</a>
+        <div class="header-title-group">
+            <span class="header-subtitle">Menú Completo</span>
+            <h1 class="header-title">Hao Mei Lai</h1>
+        </div>
+        <a href="#" class="header-link cart-btn"><i class="fas fa-shopping-cart"></i> Carrito</a>
+    </header>
+
+    <div class="search-and-filters">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar platos...">
+        </div>
+        <button class="filters-btn"><i class="fas fa-sliders-h"></i> Filtros</button>
     </div>
+
+    <nav class="categories">
+        <div class="category-item active">Todos</div>
+        <div class="category-item">Entrantes</div>
+        <div class="category-item">Sopas</div>
+        <div class="category-item">Principales</div>
+        <div class="category-item">Vegetarianos</div>
+        <div class="category-item">Bebidas</div>
+    </nav>
+
+    <main class="menu-container">
+        <?php foreach ($platos as $plato): ?>
+        <div class="menu-item">
+            <div class="item-image-container">
+                <img src="imagenes2/<?php echo htmlspecialchars($plato['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($plato['nombre']); ?>" class="item-image">
+                <div class="item-rating">
+                    <i class="fas fa-star"></i> <?php echo htmlspecialchars($plato['rating']); ?>
+                </div>
+                <?php echo generar_etiquetas($plato['tags']); ?>
+            </div>
+            <div class="item-content">
+                <div class="item-header">
+                    <h2 class="item-name"><?php echo htmlspecialchars($plato['nombre']); ?></h2>
+                    <span class="item-price"><?php echo htmlspecialchars($plato['precio']); ?></span>
+                </div>
+                <p class="item-description"><?php echo htmlspecialchars($plato['descripcion']); ?></p>
+                <div class="item-footer">
+                    <span class="item-time"><i class="fas fa-clock"></i> <?php echo htmlspecialchars($plato['tiempo']); ?></span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i> Agregar</button>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </main>
+
 </body>
+<<<<<<< HEAD
 </html> 
 >>>>>>> 0ac77f5c98f9708ebed188679a9d3fae30a709b4
+=======
+</html>
+>>>>>>> 9a73ca4bbac16431cf275295ade8bfb839602ffc
