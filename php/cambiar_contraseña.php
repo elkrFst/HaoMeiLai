@@ -1,5 +1,5 @@
 <?php
-require 'conexion.php';
+require '../conexion.php';
 $error = '';
 $token = $_GET['token'] ?? '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email)) {
         $error = "Ingresa tu correo electrónico.";
     } else {
-        require 'conexion.php';
+    require '../conexion.php';
         $sql = "SELECT id FROM usuarios WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);

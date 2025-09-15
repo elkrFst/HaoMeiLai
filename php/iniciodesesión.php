@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'conexion.php';
+require '../conexion.php';
 
 $error_email = '';
 $error_password = '';
@@ -31,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usuario'] = $row['nombre'];
             $_SESSION['rol'] = $row['rol'];
             if ($row['rol'] === 'admin') {
-                header("Location: Admin/indexadmin.php");
+                header("Location: Admin/dashboard.php");
             } else {
-                header("Location: indexusuario.php");
+                header("Location: ../index.php");
             }
             exit();
         } else {
