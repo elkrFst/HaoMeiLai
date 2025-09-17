@@ -193,14 +193,12 @@ function generar_etiquetas($tags) {
                 <p class="item-description"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                 <div class="item-footer">
                     <span class="item-time"><i class="fas fa-clock"></i> <?php echo htmlspecialchars($producto['tiempo']); ?></span>
-                    <form method="post" style="display:inline;">
-                        <input type="hidden" name="producto" value="<?php echo htmlspecialchars($producto['nombre']); ?>">
-                        <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio_num']); ?>">
-                        <input type="hidden" name="cantidad" value="1">
-                        <button type="submit" class="add-to-cart-btn" <?php echo $producto['stock'] <= 0 ? 'disabled' : ''; ?>>
-                            <i class="fas fa-plus"></i> Agregar
-                        </button>
-                    </form>
+                    <button type="button" class="add-to-cart-btn"
+    data-producto="<?php echo htmlspecialchars($producto['nombre']); ?>"
+    data-precio="<?php echo htmlspecialchars($producto['precio_num']); ?>"
+    <?php echo $producto['stock'] <= 0 ? 'disabled' : ''; ?>>
+    <i class="fas fa-plus"></i> Agregar
+</button>
                 </div>
             </div>
         </div>
@@ -266,6 +264,24 @@ function generar_etiquetas($tags) {
             });
         });
     </script>
+    <script>
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        if (this.disabled) return;
+        const producto = this.getAttribute('data-producto');
+        const precio = this.getAttribute('data-precio');
+        fetch('agregar_carrito.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `producto=${encodeURIComponent(producto)}&precio=${encodeURIComponent(precio)}&cantidad=1`
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Opcional: puedes mostrar un mensaje discreto aquí si quieres
+        });
+    });
+});
+</script>
 
 </body>
 </html>
