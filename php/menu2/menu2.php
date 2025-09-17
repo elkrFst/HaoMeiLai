@@ -1,4 +1,33 @@
 <?php
+session_start();
+
+// Procesar "Agregar al carrito"
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['producto'])) {
+    $nuevo = [
+        'producto' => $_POST['producto'],
+        'precio' => floatval($_POST['precio']),
+        'cantidad' => intval($_POST['cantidad'])
+    ];
+    if (!isset($_SESSION['carrito'])) {
+        $_SESSION['carrito'] = [];
+    }
+    // Si el producto ya está en el carrito, suma la cantidad
+    $encontrado = false;
+    foreach ($_SESSION['carrito'] as &$item) {
+        if ($item['producto'] === $nuevo['producto']) {
+            $item['cantidad'] += $nuevo['cantidad'];
+            $encontrado = true;
+            break;
+        }
+    }
+    if (!$encontrado) {
+        $_SESSION['carrito'][] = $nuevo;
+    }
+    // Redirige para evitar reenvío de formulario
+    header("Location: menu2.php");
+    exit();
+}
+
 // menu2.php
 // Conexión a la base de datos
 $servername = "127.0.0.1";
@@ -120,14 +149,13 @@ function generar_etiquetas($tags) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
     <header class="header-main">
         <a href="../../index.php" class="header-link back-btn"><i class="fas fa-arrow-left"></i> Volver</a>
         <div class="header-title-group">
             <span class="header-subtitle">Menú Completo</span>
             <h1 class="header-title">Hao Mei Lai</h1>
         </div>
-        <a href="#" class="header-link cart-btn"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        <a href="../menu2/carrito.php" class="header-link cart-btn"><i class="fas fa-shopping-cart"></i> Carrito</a>
     </header>
 
     <div class="search-and-filters">
@@ -165,9 +193,14 @@ function generar_etiquetas($tags) {
                 <p class="item-description"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                 <div class="item-footer">
                     <span class="item-time"><i class="fas fa-clock"></i> <?php echo htmlspecialchars($producto['tiempo']); ?></span>
-                    <button class="add-to-cart-btn" <?php echo $producto['stock'] <= 0 ? 'disabled' : ''; ?>>
-                        <i class="fas fa-plus"></i> Agregar
-                    </button>
+                    <form method="post" style="display:inline;">
+                        <input type="hidden" name="producto" value="<?php echo htmlspecialchars($producto['nombre']); ?>">
+                        <input type="hidden" name="precio" value="<?php echo htmlspecialchars($producto['precio_num']); ?>">
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="add-to-cart-btn" <?php echo $producto['stock'] <= 0 ? 'disabled' : ''; ?>>
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -226,7 +259,7 @@ function generar_etiquetas($tags) {
                         const itemName = item.querySelector('.item-name').textContent;
                         const itemPrice = item.querySelector('.item-price').textContent;
                         
-                        alert(`Agregado al carrito: ${itemName} - ${itemPrice}`);
+                       
                         // Aquí puedes agregar la lógica para agregar al carrito real
                     }
                 });
