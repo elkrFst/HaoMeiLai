@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header('Location: ../iniciodesesión.php');
+    header('Location: ../../iniciodesesion.php');
     exit();
 }
 require_once '../../conexion.php';
