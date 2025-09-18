@@ -166,23 +166,23 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
         <section class="menu-section">
             <h2 style="text-align:center; color: #b30000; margin-top:32px;">Explora por categoría</h2>
             <div class="menu-categorias" style="display:flex;justify-content:center;gap:38px;margin-bottom:32px;flex-wrap:wrap;">
-                <button class="icon-btn-menu" title="Arroz" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
+                <button class="icon-btn-menu" title="Arroz" data-categoria="Arroz" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="38" rx="14" ry="7" fill="#F5F5F5" stroke="#BDBDBD" stroke-width="2"/><ellipse cx="24" cy="32" rx="10" ry="5" fill="#FFFDE7" stroke="#FFF9C4" stroke-width="1"/><ellipse cx="20" cy="30" rx="1.2" ry="0.7" fill="#FFF"/><ellipse cx="24" cy="31" rx="1.2" ry="0.7" fill="#FFF"/><ellipse cx="28" cy="30" rx="1.2" ry="0.7" fill="#FFF"/><ellipse cx="22" cy="33" rx="0.8" ry="0.5" fill="#FFF"/><ellipse cx="26" cy="33" rx="0.8" ry="0.5" fill="#FFF"/><ellipse cx="30" cy="34" rx="1" ry="0.5" fill="#FFFDE7"/></svg>
                     <span>Arroz</span>
                 </button>
-                <button class="icon-btn-menu" title="Fideos" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
+                <button class="icon-btn-menu" title="Fideos" data-categoria="Fideos" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="38" rx="16" ry="8" fill="#FFA726"/><ellipse cx="24" cy="32" rx="13" ry="6" fill="#FFF3E0"/><ellipse cx="24" cy="29" rx="10" ry="4" fill="#FFD54F"/><ellipse cx="24" cy="27" rx="7" ry="3" fill="#FFF"/><path d="M18 28 Q24 36 30 28" stroke="#FFB300" stroke-width="2.5" fill="none"/><path d="M20 30 Q24 33 28 30" stroke="#FFB300" stroke-width="2.5" fill="none"/><rect x="20" y="10" width="3" height="18" rx="1.5" fill="#8D5524"/><rect x="26" y="8" width="3" height="20" rx="1.5" fill="#8D5524"/></svg>
                     <span>Fideos</span>
                 </button>
-                <button class="icon-btn-menu" title="Rollos" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
+                <button class="icon-btn-menu" title="Rollos" data-categoria="Rollos" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="12" y="28" width="24" height="8" rx="4" fill="#FFD54F" stroke="#FFA000" stroke-width="2"/><ellipse cx="24" cy="32" rx="5" ry="2.5" fill="#81C784"/><rect x="18" y="34" width="12" height="4" rx="2" fill="#FFA000"/><ellipse cx="24" cy="30" rx="2.5" ry="1.2" fill="#FFF"/><ellipse cx="30" cy="30" rx="1" ry="0.5" fill="#FFFDE7"/></svg>
                     <span>Rollos</span>
                 </button>
-                <button class="icon-btn-menu" title="Bebidas" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
+                <button class="icon-btn-menu" title="Bebidas" data-categoria="Bebidas" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="16" y="14" width="16" height="22" rx="8" fill="#29B6F6" stroke="#0288D1" stroke-width="2"/><rect x="20" y="18" width="8" height="14" rx="4" fill="#4FC3F7"/><ellipse cx="24" cy="36" rx="8" ry="3" fill="#FFF" stroke="#0288D1" stroke-width="1.5"/><rect x="24" y="8" width="2" height="10" rx="1" fill="#FF5252"/><circle cx="24" cy="30" r="1.2" fill="#FFF"/><circle cx="27" cy="32" r="1.2" fill="#FFF"/><circle cx="21" cy="32" r="1.2" fill="#FFF"/></svg>
                     <span>Bebidas</span>
                 </button>
-                <button class="icon-btn-menu" title="Postres" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
+                <button class="icon-btn-menu" title="Postres" data-categoria="Postres" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#fff;border:2px solid #ffd700;border-radius:16px;padding:18px 16px;cursor:pointer;">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="36" rx="14" ry="7" fill="#FFECB3"/><ellipse cx="24" cy="30" rx="10" ry="5" fill="#FFFDE7"/><ellipse cx="24" cy="26" rx="8" ry="4" fill="#FFD54F"/><ellipse cx="24" cy="26" rx="6" ry="2.5" fill="#FFFDE7"/><path d="M20 26 Q24 32 28 26" stroke="#FFA000" stroke-width="2" fill="none"/><rect x="22" y="24" width="4" height="2" rx="1" fill="#FFA000"/><rect x="25" y="22" width="6" height="1.2" rx="0.6" fill="#FFF"/><ellipse cx="28" cy="28" rx="1" ry="0.5" fill="#FFFDE7"/></svg>
                     <span>Postres</span>
                 </button>
@@ -294,6 +294,16 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
             menu.style.display = 'none';
         }, 200);
     }
+
+    // Redirección al menú2 con la categoría seleccionada
+    document.querySelectorAll('.icon-btn-menu').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const categoria = btn.getAttribute('data-categoria');
+            if (categoria) {
+                window.location.href = 'php/menu2/menu2.php?categoria=' + encodeURIComponent(categoria);
+            }
+        });
+    });
     </script>
 </body>
 </html>

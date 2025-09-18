@@ -72,6 +72,40 @@ body {
     margin: 20px auto;
 }
 
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+}
+
+.search-container input {
+    padding: 8px 38px 8px 16px; /* más espacio a la derecha para la lupa */
+    width: 350px;
+    border-radius: 24px;
+    border: 2px solid #e53935;
+    background: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+
+.search-container input:focus {
+    width: 400px;
+    box-shadow: 0 0 8px rgba(229, 57, 53, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1.25em;
+    color: #e53935;
+}
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -96,16 +130,7 @@ body {
 }
 
 .filters-btn {
-    background-color: #fff;
-    border: 1px solid var(--light-grey);
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #999;
+    display: none !important;
 }
 
 /* --- Estilos de las categorías --- */
@@ -147,6 +172,7 @@ body {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: stretch;
 }
 
 /* --- Estilos de las Tarjetas de Platillos --- */

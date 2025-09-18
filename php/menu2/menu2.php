@@ -130,12 +130,10 @@ function generar_etiquetas($tags) {
         <a href="#" class="header-link cart-btn"><i class="fas fa-shopping-cart"></i> Carrito</a>
     </header>
 
-    <div class="search-and-filters">
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" id="search-input" placeholder="Buscar platos...">
-        </div>
-        <button class="filters-btn"><i class="fas fa-sliders-h"></i> Filtros</button>
+    <!-- Sustituir el buscador y filtros por el buscador minimalista -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar platos...">
+
     </div>
 
     <nav class="categories">
