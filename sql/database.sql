@@ -31,48 +31,47 @@ CREATE TABLE `almacen` (
   `id` int(11) NOT NULL,
   `producto` varchar(100) NOT NULL,
   `precio` decimal(7,2) NOT NULL,
-  `stock` int(11) NOT NULL DEFAULT 0,
-  `imagen` varchar(100) DEFAULT 'default.jpg'
+  `stock` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `almacen`
 --
 
-INSERT INTO `almacen` (`id`, `producto`, `precio`, `stock`, `imagen`) VALUES
-(1, 'Arroz frito', 60.00, 50, 'arroz_frito.jpg'),
-(2, 'Chop Suey', 70.00, 40, 'chop_suey.jpg'),
-(3, 'Pollo agridulce', 85.00, 35, 'pollo_agridulce.jpg'),
-(4, 'Cerdo agridulce', 90.00, 30, 'cerdo_agridulce.jpg'),
-(5, 'Rollos primavera', 35.00, 60, 'rollos_primavera.jpg'),
-(6, 'Wantán frito', 40.00, 45, 'wantan_frito.jpg'),
-(7, 'Tallarín chino', 65.00, 50, 'tallarin_chino.jpg'),
-(8, 'Costilla BBQ', 95.00, 25, 'costilla_bbq.jpg'),
-(9, 'Camarones al ajillo', 120.00, 20, 'camarones_ajillo.jpg'),
-(10, 'Sopa de wantán', 55.00, 40, 'sopa_wantan.jpg'),
-(11, 'Sopa de maíz', 50.00, 35, 'sopa_maiz.jpg'),
-(12, 'Ensalada china', 45.00, 30, 'ensalada_china.jpg'),
-(13, 'Pollo con almendras', 90.00, 25, 'pollo_almendras.jpg'),
-(14, 'Res con brócoli', 100.00, 20, 'res_brocoli.jpg'),
-(15, 'Tofu con verduras', 80.00, 15, 'tofu_verduras.jpg'),
-(16, 'Pato laqueado', 150.00, 10, 'pato_laqueado.jpg'),
-(17, 'Pan chino', 20.00, 60, 'pan_chino.jpg'),
-(18, 'Cerdo con piña', 95.00, 20, 'cerdo_pina.jpg'),
-(19, 'Pollo Kung Pao', 90.00, 25, 'pollo_kung_pao.jpg'),
-(20, 'Res en salsa de ostras', 110.00, 15, 'res_salsa_ostras.jpg'),
-(21, 'Camarones con verduras', 120.00, 18, 'camarones_verduras.jpg'),
-(22, 'Tallarín de arroz', 70.00, 30, 'tallarin_arroz.jpg'),
-(23, 'Arroz cantonés', 65.00, 40, 'arroz_cantones.jpg'),
-(24, 'Pollo con champiñones', 85.00, 22, 'pollo_champinones.jpg'),
-(25, 'Cerdo con bambú', 95.00, 12, 'cerdo_bambu.jpg'),
-(26, 'Sopa agripicante', 60.00, 20, 'sopa_agripicante.jpg'),
-(27, 'Pollo con piña', 85.00, 18, 'pollo_pina.jpg'),
-(28, 'Res con verduras', 100.00, 15, 'res_verduras.jpg'),
-(29, 'Tallarín con camarón', 120.00, 10, 'tallarin_camaron.jpg'),
-(30, 'Pollo con brócoli', 90.00, 20, 'pollo_brocoli.jpg'),
-(31, 'Cerdo con salsa de ciruela', 100.00, 10, 'cerdo_salsa_ciruela.jpg'),
-(32, 'Sopa de fideos', 55.00, 25, 'sopa_fideos.jpg'),
-(33, 'cola de camaron', 124.00, 56, 'cola_camaron.jpg');
+INSERT INTO `almacen` (`id`, `producto`, `precio`, `stock`) VALUES
+(1, 'Arroz frito', 60.00, 50),
+(2, 'Chop Suey', 70.00, 40),
+(3, 'Pollo agridulce', 85.00, 35),
+(4, 'Cerdo agridulce', 90.00, 30),
+(5, 'Rollos primavera', 35.00, 60),
+(6, 'Wantán frito', 40.00, 45),
+(7, 'Tallarín chino', 65.00, 50),
+(8, 'Costilla BBQ', 95.00, 25),
+(9, 'Camarones al ajillo', 120.00, 20),
+(10, 'Sopa de wantán', 55.00, 40),
+(11, 'Sopa de maíz', 50.00, 35),
+(12, 'Ensalada china', 45.00, 30),
+(13, 'Pollo con almendras', 90.00, 25),
+(14, 'Res con brócoli', 100.00, 20),
+(15, 'Tofu con verduras', 80.00, 15),
+(16, 'Pato laqueado', 150.00, 10),
+(17, 'Pan chino', 20.00, 60),
+(18, 'Cerdo con piña', 95.00, 20),
+(19, 'Pollo Kung Pao', 90.00, 25),
+(20, 'Res en salsa de ostras', 110.00, 15),
+(21, 'Camarones con verduras', 120.00, 18),
+(22, 'Tallarín de arroz', 70.00, 30),
+(23, 'Arroz cantonés', 65.00, 40),
+(24, 'Pollo con champiñones', 85.00, 22),
+(25, 'Cerdo con bambú', 95.00, 12),
+(26, 'Sopa agripicante', 60.00, 20),
+(27, 'Pollo con piña', 85.00, 18),
+(28, 'Res con verduras', 100.00, 15),
+(29, 'Tallarín con camarón', 120.00, 10),
+(30, 'Pollo con brócoli', 90.00, 20),
+(31, 'Cerdo con salsa de ciruela', 100.00, 10),
+(32, 'Sopa de fideos', 55.00, 25),
+(33, 'cola de camaron', 124.00, 56);
 
 -- --------------------------------------------------------
 

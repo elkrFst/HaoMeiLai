@@ -1,15 +1,13 @@
 <?php
 // menu2.php
 // Conexión a la base de datos
-$servername = "127.0.0.1";
-$username = "root"; // Cambia si es necesario
-$password = ""; // Cambia si es necesario
-$dbname = "hao_mei_lai";
+$host = "srv562.hstgr.io";
+$user = "u162512390_Admin";
+$pass = "biuqkb>O3";
+$db = "u162512390_HaoMeiLai";
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $pass, $db);
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -151,7 +149,7 @@ function generar_etiquetas($tags) {
         <?php foreach ($productos as $producto): ?>
         <div class="menu-item <?php echo $producto['stock'] <= 0 ? 'out-of-stock' : ''; ?>" data-category="<?php echo htmlspecialchars($producto['categoria']); ?>">
             <div class="item-image-container">
-                <img src="imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>" class="item-image">
+                <img src="imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>"alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>"class="item-image">
                 <div class="item-rating">
                     <i class="fas fa-star"></i> <?php echo htmlspecialchars($producto['rating']); ?>
                 </div>

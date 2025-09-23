@@ -12,31 +12,32 @@ if ($accion == 'agregar' || $accion == 'editar') {
     $producto = $_POST['producto'];
     $precio = $_POST['precio'];
     $stock = $_POST['stock'];
+    $categoria = $_POST['categoria'];
     $imagen = 'default.jpg';
 
     // Si hay imagen subida
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
         $nombreImg = uniqid() . '_' . basename($_FILES['imagen']['name']);
-        $rutaDestino = '../../php/menu2/imagenes_productos/' . $nombreImg;
+        $rutaDestino = '../menu2/imagenes_productos/' . $nombreImg;
         move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino);
         $imagen = $nombreImg;
     }
 
     if ($accion == 'agregar') {
-        $sql = "INSERT INTO almacen (producto, precio, stock, imagen) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO almacen (producto, precio, stock, imagen, categoria) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sdis", $producto, $precio, $stock, $imagen);
+        $stmt->bind_param("sdiss", $producto, $precio, $stock, $imagen, $categoria);
         $stmt->execute();
-    } else {
+    } else { // editar
         $id = $_POST['id'];
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == 0) {
-            $sql = "UPDATE almacen SET producto=?, precio=?, stock=?, imagen=? WHERE id=?";
+            $sql = "UPDATE almacen SET producto=?, precio=?, stock=?, imagen=?, categoria=? WHERE id=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sdssi", $producto, $precio, $stock, $imagen, $id);
+            $stmt->bind_param("sdissi", $producto, $precio, $stock, $imagen, $categoria, $id);
         } else {
-            $sql = "UPDATE almacen SET producto=?, precio=?, stock=? WHERE id=?";
+            $sql = "UPDATE almacen SET producto=?, precio=?, stock=?, categoria=? WHERE id=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sdis", $producto, $precio, $stock, $id);
+            $stmt->bind_param("sdssi", $producto, $precio, $stock, $categoria, $id);
         }
         $stmt->execute();
     }
@@ -52,4 +53,3 @@ if ($accion == 'agregar' || $accion == 'editar') {
     exit();
 }
 ?>
-// hola
