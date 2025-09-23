@@ -1,5 +1,5 @@
 <?php
-require '../conexion.php';
+require 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssss", $nombre, $email, $password, $rol, $fecha_registro);
         if ($stmt->execute()) {
-            header("Location: iniciodesesión.php?registro=exito");
+            header("Location: iniciodesesion.php?registro=exito");
             exit();
         } else {
             echo "<script>alert('Error al registrar. Intenta de nuevo.'); window.location.href='registro.php';</script>";

@@ -1,5 +1,5 @@
 <?php
-require '../conexion.php';
+require 'conexion.php';
 $error = '';
 $token = $_GET['token'] ?? '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_upd = $conn->prepare($sql_upd);
             $stmt_upd->bind_param("si", $password, $row['id']);
             $stmt_upd->execute();
-            header("Location: iniciodesesión.php?registro=exito");
+            header("Location: iniciodesesion.php?registro=exito");
             exit();
         } else {
             $error = "El enlace ha expirado. Solicita uno nuevo.";
@@ -33,26 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Cambiar Contraseña - Hao Mei Lai</title>
-    <link rel="stylesheet" href="../css/stylelogin.css">
+    <link rel="stylesheet" href="css/stylelogin.css">
 </head>
-<body style="background: url('../imagenes/fondo comida.jpg') no-repeat center center fixed; background-size: cover;">
+<body style="background: url('imagenes/fondo comida.jpg') no-repeat center center fixed; background-size: cover;">
     <?php if ($error): ?>
         <div class="error-floating"><?= $error ?></div>
     <?php endif; ?>
     <div class="login-bg">
         <div class="login-container">
             <div class="login-logo">
-                <img src="../imagenes/logo comida.png" alt="Hao Mei Lai Logo">
+                <img src="imagenes/logo comida.png" alt="Hao Mei Lai Logo">
             </div>
             <h2>Cambiar Contraseña</h2>
-            <form action="cambiar_contraseña.php" method="post">
+            <form action="cambiar_contrasena.php" method="post">
                 <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
                 <label for="password">Nueva contraseña</label>
                 <input type="password" id="password" name="password" required>
                 <button type="submit" class="btn-login">Guardar y acceder</button>
             </form>
             <div class="divider"></div>
-            <button class="btn-register" onclick="window.location.href='iniciodesesión.php'">Volver al inicio de sesión</button>
+            <button class="btn-register" onclick="window.location.href='iniciodesesion.php'">Volver al inicio de sesión</button>
         </div>
     </div>
 </body>

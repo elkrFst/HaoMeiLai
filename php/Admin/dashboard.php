@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header('Location: ../iniciodesesión.php');
+    header('Location: ../../iniciodesesion.php');
     exit();
 }
 require_once '../../conexion.php'; // Asume que tienes un archivo de conexión
@@ -162,7 +162,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
                     <a class="nav-link" href="#" onclick="showSection('trabajadores')">Trabajadores</a>
                 </li>
                 <li class="nav-item mt-4">
-                    <a class="nav-link" href="../iniciodesesión.php">Cerrar Sesión</a>
+                    <a class="nav-link" href="../../iniciodesesion.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
@@ -215,7 +215,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
                             <td><?php echo $row['precio']; ?></td>
                             <td><?php echo $row['stock']; ?></td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="editarProducto(<?php echo $row['id']; ?>, '<?php echo $row['producto']; ?>', <?php echo $row['precio']; ?>, <?php echo $row['stock']; ?>)">Editar</button>
+                                <button class="btn btn-primary btn-sm" onclick="editarProducto(<?php echo $row['id']; ?>, '<?php echo $row['producto']; ?>', <?php echo $row['precio']; ?>, <?php echo $row['stock']; ?>, '<?php echo $row['categoria']; ?>')"> Editar </button>
                                 <button class="btn btn-danger btn-sm" onclick="eliminarProducto(<?php echo $row['id']; ?>)">Eliminar</button>
                             </td>
                         </tr>
@@ -232,10 +232,184 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
                     </ul>
                 </nav>
             </div>
-            <!-- Trabajadores -->
-            <div id="trabajadoresSection" class="hide">
-                <h4>Trabajadores</h4>
-                <!-- ...existing code... -->
+<!-- Trabajadores -->
+<div id="trabajadoresSection" class="hide">
+    <h4>Trabajadores</h4>
+    <div style="text-align: right; margin-bottom: 15px;">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpleado" id="btnAgregarEmpleado">Agregar Empleado</button>
+        <button class="btn btn-danger" id="btnEliminarEmpleado">Eliminar Empleado</button>
+        <button class="btn btn-secondary hide" id="btnRegresar">Regresar</button>
+    </div>
+
+
+    <?php
+        $empleados = mysqli_query($conn, "SELECT * FROM empleados");
+    ?>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php while($emp = mysqli_fetch_assoc($empleados)): ?>
+        <div class="col empleado-card">
+        <div class="card h-100" style="position: relative;">
+            <img src="../../trabajadores/<?php echo $emp['foto']; ?>" class="card-img-top" style="height:150px; object-fit:cover;">
+            <div class="card-body empleado-info"
+     data-id="<?php echo $emp['id']; ?>"
+     data-nombre="<?php echo htmlspecialchars($emp['nombre'], ENT_QUOTES); ?>"
+     data-numero="<?php echo $emp['numero_trabajador']; ?>"
+     data-password="<?php echo htmlspecialchars($emp['contraseña'], ENT_QUOTES); ?>"
+     data-descripcion="<?php echo htmlspecialchars($emp['descripcion'], ENT_QUOTES); ?>"
+     data-foto="<?php echo $emp['foto']; ?>">
+                <h5 class="card-title"><?php echo $emp['nombre']; ?></h5>
+                <p class="card-text">N° Trabajador: <?php echo $emp['numero_trabajador']; ?></p>
+                <p class="card-text"><?php echo $emp['descripcion']; ?></p>
+            </div>
+            <!-- Botón Eliminar oculto -->
+            <form method="POST" action="empleado_accion.php" class="delete-form hide" style="position: absolute; top: 10px; right: 10px;">
+                <input type="hidden" name="accion" value="eliminar">
+                <input type="hidden" name="id" value="<?php echo $emp['id']; ?>">
+                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    <?php endwhile; ?>
+        </div>
+        <!-- Modal Eliminar Empleado -->
+        <div class="modal fade" id="modalEliminarEmpleado" tabindex="-1">
+          <div class="modal-dialog">
+            <form class="modal-content" method="POST" action="empleado_accion.php">
+              <div class="modal-header">
+                <h5 class="modal-title">Eliminar Empleado</h5>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" name="accion" value="eliminar">
+                <input type="hidden" name="id" id="deleteEmpId">
+                <p>¿Seguro que deseas eliminar este empleado?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Modal para Editar Empleado -->
+        <div class="modal fade" id="modalEmpleado" tabindex="-1">
+          <div class="modal-dialog">
+            <form class="modal-content" method="POST" action="empleado_accion.php" enctype="multipart/form-data">
+              <div class="modal-header">
+                <h5 class="modal-title">Editar Empleado</h5>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" name="id" id="empId">
+        
+                <div class="mb-2">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" id="empNombre" class="form-control" required>
+                </div>
+        
+                <div class="mb-2">
+                    <label>N° Trabajador</label>
+                    <input type="text" name="numero_trabajador" id="empNumero" class="form-control" required>
+                </div>
+        
+                <div class="mb-2">
+                    <label>Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" name="contraseña" id="empPassword" class="form-control" required>
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">👁️</button>
+                    </div>
+                </div>
+        
+                <div class="mb-2">
+                    <label>Descripción</label>
+                    <textarea name="descripcion" id="empDescripcion" class="form-control"></textarea>
+                </div>
+        
+                <div class="mb-2">
+                    <label>Foto actual</label><br>
+                    <img id="empFotoPreview" src="" alt="Foto actual" style="max-width: 100px; margin-bottom:10px;">
+                </div>
+        
+                <div class="mb-2">
+                    <label>Foto nueva (opcional)</label>
+                    <input type="file" name="foto" id="empFoto" class="form-control" accept="image/*">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+                    
+<!-- Modal Agregar Empleado -->
+<div class="modal fade" id="modalAgregarEmpleado" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content" method="POST" action="empleado_accion.php" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Empleado</h5>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2">
+            <label>Nombre</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label>N° Trabajador</label>
+            <input type="text" name="numero_trabajador" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <label>Contraseña</label>
+            <div class="input-group">
+                <input type="password" name="contraseña" id="newEmpPassword" class="form-control" required>
+                <button type="button" class="btn btn-outline-secondary" onclick="toggleNewPassword()">👁️</button>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label>Descripción</label>
+            <textarea name="descripcion" class="form-control"></textarea>
+        </div>
+        <div class="mb-2">
+            <label>Foto</label>
+            <input type="file" name="foto" class="form-control" accept="image/*" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Agregar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<script>
+function abrirModalEmpleado(id, nombre, numero, password, descripcion, foto) {
+    document.getElementById('empId').value = id;
+    document.getElementById('empNombre').value = nombre;
+    document.getElementById('empNumero').value = numero;
+    document.getElementById('empPassword').value = password;
+    document.getElementById('empDescripcion').value = descripcion;
+
+    document.getElementById('empFotoPreview').src = "../../trabajadores/" + foto;
+
+    var modal = new bootstrap.Modal(document.getElementById('modalEmpleado'));
+    modal.show();
+}
+
+function toggleNewPassword() {
+    const passInput = document.getElementById('newEmpPassword');
+    passInput.type = passInput.type === 'password' ? 'text' : 'password';
+}
+
+
+document.getElementById('togglePassword').addEventListener('click', function() {
+    const passInput = document.getElementById('empPassword');
+    passInput.type = passInput.type === 'password' ? 'text' : 'password';
+});
+</script>
             </div>
             <!-- Seguridad -->
             <div id="seguridadSection" class="hide">
@@ -253,22 +427,25 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
       <div class="modal-header"><h5 class="modal-title">Agregar Producto</h5></div>
       <div class="modal-body">
         <input type="hidden" name="accion" value="agregar">
-        <div class="mb-2">
-          <label for="producto">Producto</label>
-          <input type="text" name="producto" id="producto" class="form-control" required>
-        </div>
-        <div class="mb-2">
-          <label for="precio">Precio</label>
-          <input type="number" step="0.01" name="precio" id="precio" class="form-control" required>
-        </div>
-        <div class="mb-2">
-          <label for="stock">Stock</label>
-          <input type="number" name="stock" id="stock" class="form-control" required>
-        </div>
-        <div class="mb-2">
-          <label for="imagen">Imagen</label>
-          <input type="file" name="imagen" id="imagen" class="form-control" accept="image/*">
-        </div>
+        <div class="mb-2"><input type="text" name="producto" class="form-control" placeholder="Producto" required></div>
+<div class="mb-2"><input type="number" step="0.01" name="precio" class="form-control" placeholder="Precio" required></div>
+<div class="mb-2"><input type="number" name="stock" class="form-control" placeholder="Stock" required></div>
+<div class="mb-2">
+    <label>Categoría</label>
+    <select name="categoria" class="form-control" required>
+        <option value="">Selecciona categoría</option>
+        <option value="Arroces">Arroces</option>
+        <option value="Platos fuertes">Platos fuertes</option>
+        <option value="Entrantes">Entrantes</option>
+        <option value="Fideos">Fideos</option>
+        <option value="Mariscos">Mariscos</option>
+        <option value="Sopas">Sopas</option>
+        <option value="Vegetariano">Vegetariano</option>
+        <option value="Platos especiales">Platos especiales</option>
+    </select>
+</div>
+<div class="mb-2"><label for="imagen">Imagen</label><input type="file" name="imagen" id="imagen" class="form-control" accept="image/*"></div>
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-success">Guardar</button>
@@ -287,12 +464,24 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         <input type="hidden" name="accion" value="editar">
         <input type="hidden" name="id" id="editId">
         <div class="mb-2"><input type="text" name="producto" id="editProducto" class="form-control" required></div>
-        <div class="mb-2"><input type="number" step="0.01" name="precio" id="editPrecio" class="form-control" required></div>
-        <div class="mb-2"><input type="number" name="stock" id="editStock" class="form-control" required></div>
-        <div class="mb-2">
-          <label for="editImagen">Imagen (opcional)</label>
-          <input type="file" name="imagen" id="editImagen" class="form-control" accept="image/*">
-        </div>
+<div class="mb-2"><input type="number" step="0.01" name="precio" id="editPrecio" class="form-control" required></div>
+<div class="mb-2"><input type="number" name="stock" id="editStock" class="form-control" required></div>
+<div class="mb-2">
+    <label>Categoría</label>
+    <select name="categoria" id="editCategoria" class="form-control" required>
+        <option value="">Selecciona categoría</option>
+        <option value="Arroces">Arroces</option>
+        <option value="Platos fuertes">Platos fuertes</option>
+        <option value="Entrantes">Entrantes</option>
+        <option value="Fideos">Fideos</option>
+        <option value="Mariscos">Mariscos</option>
+        <option value="Sopas">Sopas</option>
+        <option value="Vegetariano">Vegetariano</option>
+        <option value="Platos especiales">Platos especiales</option>
+    </select>
+</div>
+<div class="mb-2"><label for="editImagen">Imagen (opcional)</label><input type="file" name="imagen" id="editImagen" class="form-control" accept="image/*"></div>
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -340,27 +529,86 @@ function showSection(section) {
     };
     document.querySelectorAll('.sidebar .nav-link')[menuMap[section]].classList.add('active');
 }
-function editarProducto(id, producto, precio, stock) {
+function editarProducto(id, producto, precio, stock, categoria) {
     document.getElementById('editId').value = id;
     document.getElementById('editProducto').value = producto;
     document.getElementById('editPrecio').value = precio;
     document.getElementById('editStock').value = stock;
+    document.getElementById('editCategoria').value = categoria;
     var modal = new bootstrap.Modal(document.getElementById('modalEditar'));
     modal.show();
 }
+
 function eliminarProducto(id) {
     document.getElementById('deleteId').value = id;
     var modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
     modal.show();
 }
 function changePage(page) {
-    window.location.href = '?page=' + page + '&section=almacen';
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', page);
+    window.history.pushState({}, '', url); // Cambia solo la URL sin recargar
+    location.reload(); // recarga datos con el nuevo page
 }
 window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
-    const section = params.get('section') || 'dashboard';
-    showSection(section);
-};
+    if (window.location.search.includes('page=')) {
+        showSection('almacen');
+    } else {
+        showSection('dashboard');
+    }
+}
+// Abre modal de eliminar empleado al hacer clic en su tarjeta
+function abrirModalEliminarEmpleado(id) {
+    document.getElementById('deleteEmpId').value = id;
+    var modal = new bootstrap.Modal(document.getElementById('modalEliminarEmpleado'));
+    modal.show();
+}
+
+// Modificar tarjetas de trabajadores para agregar botón de eliminar
+document.querySelectorAll('#trabajadoresSection .card').forEach(function(card){
+    var id = card.dataset.id; // toma el id desde data-id
+    var botonEliminar = document.createElement('button');
+    botonEliminar.className = 'btn btn-danger btn-sm mt-2';
+    botonEliminar.innerText = 'Eliminar';
+    botonEliminar.onclick = function(e) {
+        e.stopPropagation(); // evita abrir modal de editar
+        abrirModalEliminarEmpleado(id);
+    };
+    card.querySelector('.card-body').appendChild(botonEliminar);
+});
+
+
+const btnEliminarEmpleado = document.getElementById('btnEliminarEmpleado');
+const btnAgregarEmpleado = document.getElementById('btnAgregarEmpleado');
+const btnRegresar = document.getElementById('btnRegresar');
+const deleteForms = document.querySelectorAll('.delete-form');
+const empleadoCards = document.querySelectorAll('.empleado-card .card-body');
+
+let modoEliminar = false;
+
+btnEliminarEmpleado.addEventListener('click', () => {
+    modoEliminar = true;
+    // Ocultar Agregar, mostrar Regresar
+    btnAgregarEmpleado.classList.add('hide');
+    btnEliminarEmpleado.classList.add('hide');
+    btnRegresar.classList.remove('hide');
+    // Mostrar botones de eliminar
+    deleteForms.forEach(f => f.classList.remove('hide'));
+    // Bloquear apertura modal al dar clic en card
+    empleadoCards.forEach(c => c.style.pointerEvents = "none");
+});
+
+btnRegresar.addEventListener('click', () => {
+    modoEliminar = false;
+    // Mostrar Agregar, ocultar Regresar
+    btnAgregarEmpleado.classList.remove('hide');
+    btnEliminarEmpleado.classList.remove('hide');
+    btnRegresar.classList.add('hide');
+    // Ocultar botones de eliminar
+    deleteForms.forEach(f => f.classList.add('hide'));
+    // Reactivar apertura modal
+    empleadoCards.forEach(c => c.style.pointerEvents = "auto");
+});
 </script>
 </body>
 </html>

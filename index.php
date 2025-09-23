@@ -11,7 +11,6 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/User.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <script src="js/dashboard.js"></script>
     <style>
     .icon-btn-menu {
         display: flex;
@@ -130,10 +129,6 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
             </nav>
         </div>
         <div class="header-right">
-            <button class="cart-btn">
-                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 16h9.45c.75 0 1.41-.41 1.75-1.03l3.24-5.88a1 1 0 0 0-.87-1.47H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 19.37 5.48 21 7 21h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.24-5.88a1 1 0 0 0-.87-1.47H6.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 19.37 5.48 21 7 21h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63z"/></svg>
-                Ordenar
-            </button>
             <div class="dashboard">
                 <div class="dashboard-icon" tabindex="0" onclick="toggleDashboardMenu()" onblur="hideDashboardMenu()">
                     <!-- Ícono de menú hamburguesa -->
@@ -148,9 +143,9 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
                     <a href="#pedidos">Mis pedidos</a>
                     <a href="#ayuda">Ayuda</a>
                     <?php if (empty($_SESSION['usuario'])): ?>
-                        <a href="php/iniciodesesión.php">Iniciar sesión</a>
+                        <a href="iniciodesesion.php">Iniciar sesión</a>
                     <?php else: ?>
-                        <a href="php/cerrarsesion.php">Cerrar sesión</a>
+                        <a href="cerrarsesion.php">Cerrar sesión</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -190,21 +185,21 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
             <h2 style="text-align:center; color: #b30000; margin-top:18px;">Top 3 más comprados</h2>
             <div class="menu-top3" style="display:flex;justify-content:center;gap:38px;flex-wrap:wrap;">
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes_productos/chow_mein.jpg" alt="Chow Mein" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes2/chow_mein.jpg" alt="Chow Mein" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Chow Mein</h3>
                         <p>Fideos salteados con verduras y salsa especial. ¡El más pedido!</p>
                     </div>
                 </div>
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes_productos/rollitos_primavera.jpg" alt="Rollitos Primavera" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes2/rollitos_primavera.jpg" alt="Rollitos Primavera" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Rollitos Primavera</h3>
                         <p>Crujientes rollos rellenos de vegetales frescos. ¡Clásico favorito!</p>
                     </div>
                 </div>
                 <div class="menu-card-top">
-                    <img src="php/menu2/imagenes_productos/pollo_gongbao.jpg" alt="Pollo Gongbao" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
+                    <img src="php/menu2/imagenes2/pollo_gongbao.jpg" alt="Pollo Gongbao" style="width:100%;height:160px;object-fit:cover;border-radius:18px 18px 0 0;">
                     <div class="menu-card-body">
                         <h3>Pollo Gongbao</h3>
                         <p>Pollo salteado con cacahuate y salsa picante. ¡Top ventas!</p>

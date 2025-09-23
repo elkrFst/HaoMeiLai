@@ -1,7 +1,9 @@
 <?php
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require 'php/PHPMailer/src/PHPMailer.php';
+require 'php/PHPMailer/src/SMTP.php';
+require 'php/PHPMailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -12,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email)) {
         $error = "Ingresa tu correo electrónico.";
     } else {
-    require '../conexion.php';
+    require 'conexion.php';
         $sql = "SELECT id FROM usuarios WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -28,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_token->bind_param("sss", $token, $expira, $email);
             $stmt_token->execute();
             // Envía el correo (ajusta los datos SMTP según tu servidor)
-            $link = "http://localhost/HaoMeiLai/php/cambiar_contraseña.php?token=$token";
+            $link = "http://vitalnews.blog/cambiar_contrasena.php?token=$token";
             
             // Configuración de PHPMailer
             $mail = new PHPMailer(true);
@@ -57,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Puedes mostrar un mensaje de error si lo deseas
             }
             
-            header("Location: recuperar_contraseña.php?enviado=1");
+            header("Location: recuperar_contrasena.php?enviado=1");
             exit();
         } else {
             $error = "El correo no está registrado.";
@@ -72,9 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Contraseña - Hao Mei Lai</title>
-    <link rel="stylesheet" href="../css/stylelogin.css">
+    <link rel="stylesheet" href="css/stylelogin.css">
 </head>
-<body style="background: url('../imagenes/fondo comida.jpg') no-repeat center center fixed; background-size: cover;">
+<body style="background: url('imagenes/fondo comida.jpg') no-repeat center center fixed; background-size: cover;">
     <?php if (isset($_GET['enviado'])): ?>
         <div class="success-floating">¡Revisa tu correo para cambiar tu contraseña!</div>
     <?php elseif ($error): ?>
@@ -83,16 +85,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="login-bg">
         <div class="login-container">
             <div class="login-logo">
-                <img src="../imagenes/logo comida.png" alt="Hao Mei Lai Logo">
+                <img src="imagenes/logo comida.png" alt="Hao Mei Lai Logo">
             </div>
             <h2>Recuperar Contraseña</h2>
-            <form action="recuperar_contraseña.php" method="post">
+            <form action="recuperar_contrasena.php" method="post">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" required>
+                <input type="text" id="email" name="email" required>
                 <button type="submit" class="btn-login">Continuar</button>
             </form>
             <div class="divider"></div>
-            <button class="btn-register" onclick="window.location.href='iniciodesesión.php'">Volver al inicio de sesión</button>
+            <button class="btn-register" onclick="window.location.href='iniciodesesion.php'">Volver al inicio de sesión</button>
         </div>
     </div>
 </body>
