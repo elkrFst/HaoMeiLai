@@ -1,15 +1,13 @@
 <?php
 // menu2.php
 // Conexión a la base de datos
-$servername = "127.0.0.1";
-$username = "root"; // Cambia si es necesario
-$password = ""; // Cambia si es necesario
-$dbname = "hao_mei_lai";
+$host = "srv562.hstgr.io";
+$user = "u162512390_Admin";
+$pass = "biuqkb>O3";
+$db = "u162512390_HaoMeiLai";
 
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $pass, $db);
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -109,9 +107,6 @@ function generar_etiquetas($tags) {
     }
     return $html;
 }
-
-// Obtener la categoría seleccionada desde la URL si existe
-$categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -133,14 +128,16 @@ $categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all'
         <a href="#" class="header-link cart-btn"><i class="fas fa-shopping-cart"></i> Carrito</a>
     </header>
 
-    <!-- Sustituir el buscador y filtros por el buscador minimalista -->
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Buscar platos...">
-
+    <div class="search-and-filters">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Buscar platos...">
+        </div>
+        <button class="filters-btn"><i class="fas fa-sliders-h"></i> Filtros</button>
     </div>
 
     <nav class="categories">
-        <div class="category-item" data-category="all">Todos</div>
+        <div class="category-item active" data-category="all">Todos</div>
         <div class="category-item" data-category="Entrantes">Entrantes</div>
         <div class="category-item" data-category="Sopas">Sopas</div>
         <div class="category-item" data-category="Principales">Principales</div>
@@ -152,7 +149,10 @@ $categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all'
         <?php foreach ($productos as $producto): ?>
         <div class="menu-item <?php echo $producto['stock'] <= 0 ? 'out-of-stock' : ''; ?>" data-category="<?php echo htmlspecialchars($producto['categoria']); ?>">
             <div class="item-image-container">
-                <img src="imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>" class="item-image">
+                <img src="imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>"alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>"class="item-image">
+                <div class="item-rating">
+                    <i class="fas fa-star"></i> <?php echo htmlspecialchars($producto['rating']); ?>
+                </div>
                 <?php echo generar_etiquetas($producto['tags']); ?>
             </div>
             <div class="item-content">
@@ -163,6 +163,9 @@ $categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all'
                 <p class="item-description"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                 <div class="item-footer">
                     <span class="item-time"><i class="fas fa-clock"></i> <?php echo htmlspecialchars($producto['tiempo']); ?></span>
+                    <button class="add-to-cart-btn" <?php echo $producto['stock'] <= 0 ? 'disabled' : ''; ?>>
+                        <i class="fas fa-plus"></i> Agregar
+                    </button>
                 </div>
             </div>
         </div>
@@ -175,41 +178,7 @@ $categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all'
             const searchInput = document.getElementById('search-input');
             const categoryItems = document.querySelectorAll('.category-item');
             const menuItems = document.querySelectorAll('.menu-item');
-
-            // Obtener la categoría seleccionada desde PHP
-            const categoriaSeleccionada = "<?php echo htmlspecialchars($categoria_seleccionada); ?>";
-
-            // Activar la categoría seleccionada y filtrar al cargar
-            let categoriaInicial = categoriaSeleccionada && categoriaSeleccionada !== '' ? categoriaSeleccionada : 'all';
-            let categoriaEncontrada = false;
-            categoryItems.forEach(item => {
-                if (item.getAttribute('data-category') === categoriaInicial) {
-                    item.classList.add('active');
-                    categoriaEncontrada = true;
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-            // Si la categoría no existe, activar 'Todos'
-            if (!categoriaEncontrada) {
-                categoryItems.forEach(item => {
-                    if (item.getAttribute('data-category') === 'all') {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
-                });
-                categoriaInicial = 'all';
-            }
-            // Filtrar elementos al cargar
-            menuItems.forEach(menuItem => {
-                if (categoriaInicial === 'all' || menuItem.getAttribute('data-category') === categoriaInicial) {
-                    menuItem.style.display = 'block';
-                } else {
-                    menuItem.style.display = 'none';
-                }
-            });
-
+            
             // Filtrar por categoría
             categoryItems.forEach(item => {
                 item.addEventListener('click', function() {
@@ -242,6 +211,21 @@ $categoria_seleccionada = isset($_GET['categoria']) ? $_GET['categoria'] : 'all'
                         item.style.display = 'block';
                     } else {
                         item.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Agregar al carrito
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!this.disabled) {
+                        const item = this.closest('.menu-item');
+                        const itemName = item.querySelector('.item-name').textContent;
+                        const itemPrice = item.querySelector('.item-price').textContent;
+                        
+                        alert(`Agregado al carrito: ${itemName} - ${itemPrice}`);
+                        // Aquí puedes agregar la lógica para agregar al carrito real
                     }
                 });
             });
