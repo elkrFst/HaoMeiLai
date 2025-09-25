@@ -1,9 +1,9 @@
 <?php
-
-$host = "srv562.hstgr.io";
-$user = "u162512390_Admin";
-$pass = "biuqkb>O3";
-$db = "u162512390_HaoMeiLai";
+// filepath: c:\xampp\htdocs\HaoMeiLai\conexion.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "hao_mei_lai";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
