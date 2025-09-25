@@ -148,7 +148,7 @@ $logo_url = "imagenes/logo comida.png"; // Icono de un dragón, un enlace extern
                     <a href="#pedidos">Mis pedidos</a>
                     <a href="#ayuda">Ayuda</a>
                     <?php if (empty($_SESSION['usuario'])): ?>
-                        <a href="php/iniciodesesión.php">Iniciar sesión</a>
+                        <a href="iniciodesesion.php">Iniciar sesión</a>
                     <?php else: ?>
                         <a href="php/cerrarsesion.php">Cerrar sesión</a>
                     <?php endif; ?>
