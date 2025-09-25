@@ -53,4 +53,3 @@ if ($accion == 'agregar' || $accion == 'editar') {
     exit();
 }
 ?>
-<nav></nav>

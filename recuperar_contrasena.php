@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Puedes mostrar un mensaje de error si lo deseas
             }
             
-            header("Location: recuperar_contrasena.php?enviado=1");
+            header("Location: RecuperarContraseña?enviado=1");
             exit();
         } else {
             $error = "El correo no está registrado.";
@@ -88,13 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="imagenes/logo comida.png" alt="Hao Mei Lai Logo">
             </div>
             <h2>Recuperar Contraseña</h2>
-            <form action="recuperar_contrasena.php" method="post">
+            <form action="RecuperarContraseña" method="post">
                 <label for="email">Correo electrónico</label>
                 <input type="text" id="email" name="email" required>
                 <button type="submit" class="btn-login">Continuar</button>
             </form>
             <div class="divider"></div>
-            <button class="btn-register" onclick="window.location.href='iniciodesesion.php'">Volver al inicio de sesión</button>
+            <button class="btn-register" onclick="window.location.href='login'">Volver al inicio de sesión</button>
         </div>
     </div>
 </body>

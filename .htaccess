@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# --- Evitar errores si el archivo o carpeta ya existe ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# --- Rutas públicas con URL corta ---
+RewriteRule ^login/?$ iniciodesesion.php [L]
+RewriteRule ^break/?$ cerrarsesion.php [L]
+RewriteRule ^registro/?$ registro.php [L]
+RewriteRule ^recuperar/?$ recuperar_contrasena.php [L]
+RewriteRule ^cambiar/?$ cambiar_contrasena.php [L]
+
+RewriteRule ^menu/?$ php/menu2/menu2.php [L]
+RewriteRule ^menu/carrito_handler/?$ php/menu2/carrito_handler.php [L]
+RewriteRule ^about/?$ php/AboutUs/about.php [L]
+
+RewriteRule ^inicio/?$ index.php [L]
+RewriteRule ^panel/?$ php/Admin/dashboard.php [L]
+RewriteRule ^caja/?$ php/Empleado/empleado.php [L]
+RewriteRule ^pago/?$ php/Empleado/pago.php [L]

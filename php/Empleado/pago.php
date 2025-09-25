@@ -2,14 +2,29 @@
 // pago.php
 session_start();
 
-// Procesar datos del carrito
+// Evitar que el navegador use caché
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'Empleado') {
+    header("Location: /login");
+    exit();
+}
+
+// Inicializar variables
 $carrito = [];
+$total = 0;
+$pago_exitoso = false;
+
+// Procesar datos del carrito - tanto en GET como en POST
 if (isset($_POST['carrito'])) {
     $carrito = json_decode($_POST['carrito'], true);
+} elseif (isset($_GET['carrito'])) {
+    $carrito = json_decode($_GET['carrito'], true);
 }
 
 // Calcular total
-$total = 0;
 foreach ($carrito as $item) {
     $total += $item['precio'] * $item['cantidad'];
 }
@@ -17,12 +32,24 @@ foreach ($carrito as $item) {
 // Procesar pago
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
     $metodo_pago = $_POST['metodo_pago'];
-    $hora_entrega = $_POST['hora_entrega'];
+    $pago_efectivo = isset($_POST['pago_efectivo']) ? floatval($_POST['pago_efectivo']) : 0;
+    
+    // Recalcular el total desde el carrito enviado
+    $carrito_pago = json_decode($_POST['carrito_data'], true);
+    $total_pago = 0;
+    foreach ($carrito_pago as $item) {
+        $total_pago += $item['precio'] * $item['cantidad'];
+    }
+    
+    $cambio = $pago_efectivo - $total_pago;
     
     // Aquí iría la conexión con la pasarela de pago real
     // Por ahora simulamos un pago exitoso
-    
     $pago_exitoso = true;
+    
+    // Usar los valores del pago procesado
+    $total = $total_pago;
+    $carrito = $carrito_pago;
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Método de Pago - Restaurante JUAN</title>
+    <title>Método de Pago - HAO MEI LAI</title>
     <style>
         * {
             box-sizing: border-box;
@@ -39,22 +66,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #f9f3e9;
+            background-color: #f6e7d8;
             color: #3a2c1e;
             line-height: 1.6;
             padding: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f9f3e9"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e8d5c0" stroke-width="1"/></svg>');
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
             overflow: hidden;
         }
         header {
-            background-color: #8B0000;
+            background-color: #7b2c2c;
             color: white;
             padding: 25px 0;
             text-align: center;
@@ -67,12 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
         h2 {
             font-size: 1.8rem;
             margin-bottom: 20px;
-            color: #8B0000;
+            color: #7b2c2c;
             padding-bottom: 10px;
             border-bottom: 2px solid #e8d5c0;
         }
         h3 {
-            color: #8B0000;
+            color: #7b2c2c;
             margin-bottom: 15px;
             font-size: 1.4rem;
         }
@@ -101,19 +127,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             text-align: right;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 2px solid #8B0000;
-            color: #8B0000;
+            border-top: 2px solid #7b2c2c;
+            color: #7b2c2c;
         }
         .metodos-pago {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
         .metodo {
             background: white;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: all 0.3s;
@@ -121,12 +147,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             text-align: center;
         }
         .metodo:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
         .metodo.seleccionado {
-            border-color: #8B0000;
-            background-color: #fff0f0;
+            border-color: #7b2c2c;
+            background-color: #f8f9fa;
         }
         .icono {
             font-size: 40px;
@@ -140,6 +166,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             border-top: 1px dashed #e8d5c0;
             text-align: left;
         }
+        
+        /* ESTILOS ESPECÍFICOS PARA EFECTIVO */
+        .cash-input-section {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .cash-row {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            margin-bottom: 15px;
+        }
+        .cash-col {
+            flex: 1;
+        }
+        .amount-input {
+            font-size: 1.2em;
+            text-align: center;
+            border: 2px solid #7b2c2c;
+            border-radius: 8px;
+            background: white;
+        }
+        .change-display {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+        .change-negative {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .quick-amounts {
+            margin-top: 15px;
+        }
+        .quick-btn {
+            background: #a33d3d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 2px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .quick-btn:hover {
+            background: #7b2c2c;
+        }
+        
         .form-group {
             margin-bottom: 15px;
         }
@@ -158,11 +239,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             background: #fffaf0;
         }
         .btn {
-            background: #8B0000;
+            background: #7b2c2c;
             color: white;
             border: none;
             padding: 15px 30px;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 18px;
             font-weight: bold;
@@ -171,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             text-align: center;
         }
         .btn:hover {
-            background: #a52a2a;
+            background: #a33d3d;
         }
         .btn-secundario {
             background: #8b8b8b;
@@ -184,21 +265,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             justify-content: space-between;
             margin-top: 30px;
         }
-        .hora-entrega {
-            background: #fffaf0;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border: 1px solid #e8d5c0;
-        }
         .mensaje-exito {
-            background: #dff0d8;
-            color: #3c763d;
+            background: #d4edda;
+            color: #155724;
             padding: 20px;
             border-radius: 8px;
             margin: 20px 0;
             text-align: center;
-            border: 1px solid #d6e9c6;
+            border: 1px solid #c3e6cb;
         }
         @media (max-width: 768px) {
             .metodos-pago {
@@ -211,25 +285,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             .btn {
                 width: 100%;
             }
+            .cash-row {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>JUAN</h1>
+            <h1>HAO MEI LAI</h1>
             <p>Restaurante Chino Auténtico</p>
         </header>
 
         <div class="content">
-            <?php if (isset($pago_exitoso) && $pago_exitoso): ?>
+            <?php if ($pago_exitoso): ?>
                 <div class="mensaje-exito">
                     <h3>¡Pago realizado con éxito!</h3>
-                    <p>Tu pedido será entregado a las <?php echo htmlspecialchars($_POST['hora_entrega']); ?>.</p>
                     <p>Método de pago: <?php echo htmlspecialchars($_POST['metodo_pago']); ?>.</p>
-                    <p>Gracias por tu compra.</p>
+                    <?php if ($_POST['metodo_pago'] === 'efectivo' && isset($_POST['pago_efectivo']) && $_POST['pago_efectivo'] > 0): ?>
+                        <p><strong>Total a pagar:</strong> $<?php echo number_format($total, 2); ?></p>
+                        <p><strong>Efectivo recibido:</strong> $<?php echo number_format($_POST['pago_efectivo'], 2); ?></p>
+                        <?php if ($cambio > 0): ?>
+                            <p><strong>Cambio a entregar:</strong> <span style="color: #28a745; font-size: 1.3em;">$<?php echo number_format($cambio, 2); ?></span></p>
+                        <?php elseif ($cambio == 0): ?>
+                            <p><strong>Pago exacto - Sin cambio</strong></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <p>Tu pedido será preparado lo antes posible.</p>
+                    <p>¡Gracias por tu compra!</p>
                     <div style="margin-top: 20px;">
-                        <a href="empleado.php" class="btn">Volver al Menú</a>
+                        <a href="caja" class="btn">Volver al Menú</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -237,12 +324,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
                 
                 <div class="resumen-pedido">
                     <h3>Resumen de tu Pedido</h3>
-                    <?php foreach ($carrito as $item): ?>
-                        <div class="producto">
-                            <div><?php echo htmlspecialchars($item['nombre']); ?> (x<?php echo $item['cantidad']; ?>)</div>
-                            <div>$<?php echo number_format($item['precio'] * $item['cantidad'], 2); ?></div>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php if (!empty($carrito)): ?>
+                        <?php foreach ($carrito as $item): ?>
+                            <div class="producto">
+                                <div><?php echo htmlspecialchars($item['nombre']); ?> (x<?php echo $item['cantidad']; ?>)</div>
+                                <div>$<?php echo number_format($item['precio'] * $item['cantidad'], 2); ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No hay productos en el carrito.</p>
+                    <?php endif; ?>
                     
                     <div class="total">
                         Total: $<?php echo number_format($total, 2); ?>
@@ -250,15 +341,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
                 </div>
 
                 <form method="post" id="form-pago">
-                    <div class="hora-entrega">
-                        <h3>Hora de Entrega</h3>
-                        <div class="form-group">
-                            <label for="hora_entrega">Selecciona la hora de entrega:</label>
-                            <input type="time" id="hora_entrega" name="hora_entrega" required 
-                                   min="11:00" max="22:00" value="<?php echo date('H:i', strtotime('+45 minutes')); ?>">
-                        </div>
-                    </div>
-
+                    <!-- Campo oculto para enviar los datos del carrito -->
+                    <input type="hidden" name="carrito_data" value="<?php echo htmlspecialchars(json_encode($carrito)); ?>">
+                    
                     <h3>Selecciona Método de Pago</h3>
                     
                     <div class="metodos-pago">
@@ -293,7 +378,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
                             <span class="icono">💰</span>
                             <h4>Efectivo</h4>
                             <div class="detalles-pago" id="detalles-efectivo">
-                                <p>Paga en efectivo cuando te entreguemos tu pedido.</p>
+                                <div class="cash-input-section">
+                                    <div class="cash-row">
+                                        <div class="cash-col">
+                                            <label>Total a Pagar:</label>
+                                            <input type="text" class="form-control" value="$<?php echo number_format($total, 2); ?>" readonly>
+                                        </div>
+                                        <div class="cash-col">
+                                            <label>Cantidad Recibida:</label>
+                                            <input type="number" 
+                                                   class="form-control amount-input" 
+                                                   id="cashAmount" 
+                                                   name="pago_efectivo"
+                                                   placeholder="0.00" 
+                                                   step="0.01"
+                                                   min="0"
+                                                   oninput="calculateChange()"
+                                                   onkeydown="preventNegative(event)">
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="changeDisplay" class="change-display">
+                                        <strong id="changeText"></strong>
+                                    </div>
+
+                                    <div class="quick-amounts">
+                                        <small style="color: #666;">Cantidad exacta o botones rápidos:</small><br>
+                                        <button type="button" class="quick-btn" onclick="setAmount(<?php echo $total; ?>)">Exacto ($<?php echo number_format($total, 0); ?>)</button>
+                                        <button type="button" class="quick-btn" onclick="setAmount(<?php echo ceil($total/50)*50; ?>)">$<?php echo ceil($total/50)*50; ?></button>
+                                        <button type="button" class="quick-btn" onclick="setAmount(<?php echo ceil($total/100)*100; ?>)">$<?php echo ceil($total/100)*100; ?></button>
+                                        <button type="button" class="quick-btn" onclick="setAmount(300)">$300</button>
+                                        <button type="button" class="quick-btn" onclick="setAmount(500)">$500</button>
+                                        <button type="button" class="quick-btn" onclick="setAmount(1000)">$1000</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -301,8 +419,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
                     <input type="hidden" id="metodo_pago" name="metodo_pago" value="">
                     
                     <div class="acciones">
-                        <a href="empleado.php" class="btn btn-secundario">Volver al Menú</a>
-                        <button type="submit" name="confirmar_pago" class="btn">Confirmar Pago</button>
+                        <a href="caja" class="btn btn-secundario">Volver al Menú</a>
+                        <button type="submit" name="confirmar_pago" class="btn" id="btn-confirmar">Confirmar Pago</button>
                     </div>
                 </form>
             <?php endif; ?>
@@ -310,6 +428,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
     </div>
 
     <script>
+        const totalToPay = <?php echo $total; ?>;
+        
         // Selección de método de pago
         const metodosPago = document.querySelectorAll('.metodo');
         metodosPago.forEach(metodo => {
@@ -335,6 +455,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
             });
         });
         
+        // Función para calcular el cambio en efectivo
+        function calculateChange() {
+            const cashAmount = parseFloat(document.getElementById('cashAmount').value) || 0;
+            const changeDisplay = document.getElementById('changeDisplay');
+            const changeText = document.getElementById('changeText');
+            const btnConfirmar = document.getElementById('btn-confirmar');
+            
+            if (cashAmount > 0) {
+                const change = cashAmount - totalToPay;
+                changeDisplay.style.display = 'block';
+                
+                if (change >= 0) {
+                    changeDisplay.className = 'change-display';
+                    if (change === 0) {
+                        changeText.innerHTML = `<span style="color: #28a745; font-size: 1.2em;">Pago exacto - Sin cambio</span>`;
+                    } else {
+                        changeText.innerHTML = `Cambio a regresar: <span style="font-size: 1.3em; color: #28a745; font-weight: bold;">$${change.toFixed(2)}</span>`;
+                    }
+                    btnConfirmar.disabled = false;
+                    btnConfirmar.style.opacity = '1';
+                } else {
+                    changeDisplay.className = 'change-display change-negative';
+                    changeText.innerHTML = `<strong>Cantidad insuficiente</strong><br>Faltan: <span style="font-size: 1.2em;">$${Math.abs(change).toFixed(2)}</span>`;
+                    btnConfirmar.disabled = true;
+                    btnConfirmar.style.opacity = '0.6';
+                }
+            } else {
+                changeDisplay.style.display = 'none';
+                btnConfirmar.disabled = false;
+                btnConfirmar.style.opacity = '1';
+            }
+        }
+
+        function setAmount(amount) {
+            document.getElementById('cashAmount').value = amount;
+            calculateChange();
+        }
+
+        // Función para prevenir números negativos
+        function preventNegative(event) {
+            // Prevenir teclas de menos y e (notación científica)
+            if (event.key === '-' || event.key === 'e' || event.key === 'E') {
+                event.preventDefault();
+            }
+        }
+        
         // Seleccionar automáticamente el primer método de pago
         document.addEventListener('DOMContentLoaded', function() {
             if (metodosPago.length > 0) {
@@ -345,7 +511,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
         // Validación del formulario
         document.getElementById('form-pago').addEventListener('submit', function(e) {
             const metodoSeleccionado = document.getElementById('metodo_pago').value;
-            const horaEntrega = document.getElementById('hora_entrega').value;
             
             if (!metodoSeleccionado) {
                 e.preventDefault();
@@ -353,10 +518,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_pago'])) {
                 return;
             }
             
-            if (!horaEntrega) {
-                e.preventDefault();
-                alert('Por favor, selecciona una hora de entrega.');
-                return;
+            // Validación para efectivo
+            if (metodoSeleccionado === 'efectivo') {
+                const cashAmount = parseFloat(document.getElementById('cashAmount').value) || 0;
+                
+                if (cashAmount < totalToPay) {
+                    e.preventDefault();
+                    alert('La cantidad ingresada es insuficiente para cubrir el total.');
+                    return;
+                }
+                
+                // Sin mensaje de confirmación - enviar directamente
             }
             
             // Validación adicional para tarjeta

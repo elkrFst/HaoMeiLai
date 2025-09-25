@@ -28,7 +28,7 @@
                 <button type="submit" class="btn-login">Registrarse</button>
             </form>
             <div class="divider"></div>
-            <button class="btn-register" onclick="window.location.href='iniciodesesion.php'">Volver al inicio de sesión</button>
+            <button class="btn-register" onclick="window.location.href='login'">Volver al inicio de sesión</button>
         </div>
     </div>
 </body>

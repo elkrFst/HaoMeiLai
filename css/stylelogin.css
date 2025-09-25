@@ -202,3 +202,48 @@ footer {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* Media Queries para responsividad */
+@media (max-width: 500px) {
+    /* Ajustes al contenedor de login en móviles */
+    .login-container {
+        width: 90%; /* Hace que el contenedor ocupe casi todo el ancho de la pantalla */
+        padding: 30px 24px 20px 24px; /* Reduce el padding para pantallas pequeñas */
+        box-shadow: none; /* Elimina la sombra para un aspecto más limpio en móviles */
+        border-radius: 0;
+    }
+
+    /* Ajustes en los elementos flotantes de mensajes */
+    .error-floating, .success-floating {
+        width: 90%; /* Permite que los mensajes de error/éxito se adapten al ancho */
+        padding: 12px 24px; /* Reduce el padding */
+        top: 20px; /* Sube la posición para que no estorbe */
+    }
+
+    /* Ajustes en los títulos */
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .login-subtitle {
+        font-size: 0.9em;
+    }
+
+    /* Ajustes en los botones y campos de entrada */
+    input[type="text"], 
+    input[type="password"] {
+        padding: 10px; /* Ajusta el padding para que no se vean muy grandes */
+    }
+    
+    .btn-login,
+    .btn-register {
+        padding: 10px 0;
+        font-size: 1em;
+    }
+
+    /* Ajuste para el footer */
+    footer {
+        font-size: 0.85em;
+        bottom: 8px;
+    }
+}

@@ -18,7 +18,28 @@ body {
     display: flex;
     align-items: center;
     gap: 28px;
+    /* Sin flex-grow */
 }
+
+.header-center {
+    /* ¡IMPORTANTE! Quitar flex: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Permite el movimiento */
+    position: relative; 
+    left: -80px; /* <--- MODIFICA ESTE VALOR HASTA EL CENTRADO VISUAL */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-left: 38px; /* Restaura el margen original si es necesario, o déjalo en 0 */
+    /* Sin flex-grow */
+}
+
 .logo {
     width: 60px;
     height: 60px;
@@ -47,12 +68,7 @@ body {
     color: #666;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 nav {
     display: flex;
     align-items: center;
@@ -79,12 +95,7 @@ nav {
     color: #b30000;
     background: #ffd7d7;
 }
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-left: 38px;
-}
+
 .bienvenida-hero {
     background: url('../imagenes/fondo.jpg') center center/cover no-repeat;
     height: 320px;

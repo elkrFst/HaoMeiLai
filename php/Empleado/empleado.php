@@ -1,8 +1,13 @@
 <?php
 session_start();
+// Evitar que el navegador use caché
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
-if (!isset($_SESSION['usuario'])) {
-    $_SESSION['usuario'] = "Empleado";
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'Empleado') {
+    header("Location: /login");
+    exit();
 }
 
 // Conexión a la base de datos
@@ -49,14 +54,14 @@ $conn->close();
   <header>
     <div class="header-container">
       <div class="logo-user">
-        <img src="../../imagenes/logo comida.png" alt="Logo">
+        <img src="/imagenes/logo comida.png" alt="Logo">
         <div class="user-dropdown">
             <div class="user-toggle">
                 <?php echo htmlspecialchars($_SESSION['usuario']); ?> 👤
             </div>
             <div class="dropdown-menu">
-                <a href="../../iniciodesesion.php">🔄 Cambiar cuenta</a>
-                <a href="../../iniciodesesion.php">🚪 Cerrar sesión</a>
+                <a href="/login">🔄 Cambiar cuenta</a>
+                <a href="/break">🚪 Cerrar sesión</a>
             </div>
         </div>
       </div>
@@ -124,7 +129,7 @@ $conn->close();
         filtrados.forEach(p => {
           menu.innerHTML += `
             <div class="card">
-              <img src="../menu2/imagenes_productos/${p.imagen}" alt="${p.nombre}">
+              <img src="php/menu2/imagenes_productos/${p.imagen}" alt="${p.nombre}">
               <h3>${p.nombre}</h3>
               <button onclick="agregarAlCarrito('${p.nombre}', ${p.precio})">🛒 Agregar - $${p.precio}</button>
             </div>
@@ -208,7 +213,7 @@ $conn->close();
       }
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'pago.php';
+      form.action = 'pago';
       const input = document.createElement('input');
       input.type = 'hidden';
       input.name = 'carrito';
