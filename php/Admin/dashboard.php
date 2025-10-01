@@ -35,6 +35,10 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        body {
+            background: linear-gradient(135deg, #fbeee6 0%, #f6e7d8 100%) !important;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
         .seleccionable {
         cursor: pointer;
         border: 2px dashed red;
@@ -47,16 +51,154 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         body { background: #f8f9fa; }
         .sidebar {
             min-height: 100vh;
-            background: #343a40;
+            background: linear-gradient(180deg, #7b2c2c 60%, #a33d3d 100%) !important;
             color: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.04);
+        }
+        .sidebar .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.sidebar .logo h2 {
+    width: 100%;
+    text-align: center;
+}
+        .sidebar .logo img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background: #fff;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .sidebar .logo h2 {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-top: 8px;
         }
         .sidebar .nav-link {
-            color: #fff;
+            color: #fff !important;
+            font-weight: 500;
+            margin: 8px 0;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+            font-size: 1.08em;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        .sidebar .nav-link i {
+            font-size: 1.2em;
+        }
+        .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
-            background: #495057;
+            background: #fff2e6 !important;
+            color: #a33d3d !important;
         }
         .content {
+            padding: 2.5rem 2rem;
+        }
+        .card {
+            border: none !important;
+            border-radius: 18px !important;
+            box-shadow: 0 4px 16px rgba(163,61,61,0.08);
+            text-align: center;
+            padding: 28px 18px;
+            transition: transform 0.15s;
+            background: #fff;
+        }
+        .card:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(163,61,61,0.13);
+        }
+        .card-title {
+            color: #a33d3d;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .card-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .card .icon {
+            font-size: 2.5em;
+            color: #f6c453;
+            margin-bottom: 10px;
+        }
+        .btn-primary, .btn-success, .btn-danger, .btn-secondary {
+            border-radius: 8px !important;
+            font-weight: 500;
+            transition: box-shadow 0.2s;
+        }
+        .btn-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover {
+            box-shadow: 0 2px 8px rgba(163,61,61,0.13);
+        }
+        .table {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            margin-top: 10px;
+        }
+        .table thead {
+            background: #a33d3d;
+            color: #fff;
+            font-size: 1.05em;
+        }
+        .table tbody tr:nth-child(even) {
+            background: #fbeee6;
+        }
+        .table tbody tr:hover {
+            background: #f6c45344;
+        }
+        .pagination .page-item.active .page-link {
+            background: #a33d3d;
+            border-color: #a33d3d;
+        }
+        .pagination .page-link {
+            color: #a33d3d;
+        }
+        .empleado-card .card {
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(163,61,61,0.07);
+            transition: transform 0.15s, box-shadow 0.15s;
+            background: #fff;
+            margin-bottom: 18px;
+        }
+        .empleado-card .card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(163,61,61,0.13);
+        }
+        .empleado-card img.card-img-top {
+            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            margin: 18px auto 0 auto;
+            border: 4px solid #f6c453;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(163,61,61,0.10);
+        }
+        .empleado-card .card-title {
+            color: #a33d3d;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+        .empleado-card .card-text {
+            color: #555;
+            font-size: 1em;
+        }
+        .hide { display: none !important; }
+    </style>
             padding: 2rem;
         }
         .hide { display: none; }
