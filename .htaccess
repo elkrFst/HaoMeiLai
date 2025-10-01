@@ -12,7 +12,6 @@ RewriteRule ^recuperar/?$ recuperar_contrasena.php [L]
 RewriteRule ^cambiar/?$ cambiar_contrasena.php [L]
 
 RewriteRule ^menu/?$ php/menu2/menu2.php [L]
-RewriteRule ^menu/carrito_handler/?$ php/menu2/carrito_handler.php [L]
 RewriteRule ^about/?$ php/AboutUs/about.php [L]
 
 RewriteRule ^inicio/?$ index.php [L]
