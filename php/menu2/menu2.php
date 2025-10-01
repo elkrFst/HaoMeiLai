@@ -111,7 +111,7 @@ $puede_comprar = (strtolower($rol_actual) === 'usuario');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Completo - Hao Mei Lai</title>
-    <link rel="stylesheet" href="/php/menu2/menu2.css">
+    <link rel="stylesheet" href="php/menu2/menu2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
@@ -293,7 +293,7 @@ $puede_comprar = (strtolower($rol_actual) === 'usuario');
 <body>
 
     <header class="header-main">
-        <a href="/inicio" class="header-link back-btn"><i class="fas fa-arrow-left"></i> Volver</a>
+        <a href="inicio" class="header-link back-btn"><i class="fas fa-arrow-left"></i> Volver</a>
         <div class="header-title-group">
             <span class="header-subtitle">Menú Completo</span>
             <h1 class="header-title">Hao Mei Lai</h1>
@@ -321,7 +321,7 @@ $puede_comprar = (strtolower($rol_actual) === 'usuario');
         <?php foreach ($productos as $producto): ?>
         <div class="menu-item <?php echo $producto['stock'] <= 0 ? 'out-of-stock' : ''; ?>" data-category="<?php echo htmlspecialchars($producto['categoria']); ?>">
             <div class="item-image-container">
-                <img src="/php/menu2/imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>" class="item-image">
+                <img src="php/menu2/imagenes_productos/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>" class="item-image">
                 <?php echo generar_etiquetas($producto['tags']); ?>
             </div>
             <div class="item-content">
@@ -365,7 +365,7 @@ $puede_comprar = (strtolower($rol_actual) === 'usuario');
         <div class="modal-content">
             <h3>Acceso Restringido</h3>
             <p>Necesitas iniciar sesión o registrarte con una cuenta de **Usuario** para poder agregar productos y realizar un pedido.</p>
-            <a href="/login">Iniciar Sesión / Registrarse</a>
+            <a href="login">Iniciar Sesión / Registrarse</a>
         </div>
     </div>
 
