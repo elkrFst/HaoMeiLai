@@ -35,10 +35,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #fbeee6 0%, #f6e7d8 100%) !important;
-            font-family: 'Segoe UI', 'Arial', sans-serif;
-        }
+<<<<<<< HEAD
         .seleccionable {
         cursor: pointer;
         border: 2px dashed red;
@@ -49,6 +46,12 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         }
 
         body { background: #f8f9fa; }
+=======
+        body {
+            background: linear-gradient(135deg, #fbeee6 0%, #f6e7d8 100%) !important;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+>>>>>>> 240a422cc4bbf4de9310792575f632775ee68f5d
         .sidebar {
             min-height: 100vh;
             background: linear-gradient(180deg, #7b2c2c 60%, #a33d3d 100%) !important;
@@ -199,10 +202,7 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         }
         .hide { display: none !important; }
     </style>
-            padding: 2rem;
-        }
-        .hide { display: none; }
-    </style>
+<<<<<<< HEAD
     <style>
     /* ======= ESTILO DASHBOARD CHINO ======= */
 
@@ -422,6 +422,8 @@ $productos = mysqli_query($conn, "SELECT * FROM almacen LIMIT $offset, $limit");
         font-size: 0.9rem;
     }
 </style>
+=======
+>>>>>>> 240a422cc4bbf4de9310792575f632775ee68f5d
 
 </head>
 <body>
