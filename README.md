@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="logo comida" src="https://github.com/user-attachments/assets/756163d3-395f-49b8-9e6a-b2cd224d051c" />
 # 🚀 Hao Mei Lai
 
 ## 📖 Descripción
@@ -52,6 +53,7 @@ Validación de Entradas: Se validan y sanean los datos enviados por el usuario (
 ## ⚙️ Tecnologías Utilizadas
 
 * **Lenguajes:** PHP, JavaScript, CSS, SQL
+
 * **Base de Datos:** MySQL
 * **Servidor:** Hostinger 
 * **Frameworks/Bibliotecas:** n/a
