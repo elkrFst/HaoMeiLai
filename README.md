@@ -1,4 +1,5 @@
-<img width="512" height="512" alt="logo comida" src="https://github.com/user-attachments/assets/756163d3-395f-49b8-9e6a-b2cd224d051c" />
+##<img width="256" height="256" alt="logo comida" src="https://github.com/user-attachments/assets/756163d3-395f-49b8-9e6a-b2cd224d051c" />
+
 # 🚀 Hao Mei Lai
 
 ## 📖 Descripción
