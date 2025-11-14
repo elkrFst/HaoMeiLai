@@ -16,7 +16,8 @@ Proyecto final para la asignatura **Legislación y Derecho Informático**.
 * Maximo Alessandro Villa Rivera
 ---
 
-⚖️ Aspectos de Legislación y Derecho Informático
+## ⚖️ Aspectos de Legislación y Derecho Informático
+
 ➤ Protección de Datos
 El proyecto recolecta datos personales básicos como nombre e email para poder procesar, confirmar y entregar los pedidos. Esta recolección se alinea con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). Para cumplir, el sitio incluye un Aviso de Privacidad claro donde se informa al cliente qué datos se recolectan, para qué se usan y cómo pueden ejercer sus derechos ARCO.
 
