@@ -1,4 +1,5 @@
-<img width="256" height="256" alt="logo comida" src="https://github.com/user-attachments/assets/756163d3-395f-49b8-9e6a-b2cd224d051c" />
+<img width="256" height="256" alt="Diseño sin título (1)" src="https://github.com/user-attachments/assets/56099338-c982-4b93-863b-5fb71e7926e5" />
+
 
 # 🚀 Hao Mei Lai
 
