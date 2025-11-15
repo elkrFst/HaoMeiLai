@@ -1,4 +1,4 @@
-<img width="1024" height="1024" src="https://github.com/user-attachments/assets/56099338-c982-4b93-863b-5fb71e7926e5" />
+<img width="1280" height="400" alt="Diseño sin título (1) (1)" src="https://github.com/user-attachments/assets/2178543c-af1a-48e6-b4f2-96f8423fa50e" />
 
 
 # 🚀 Hao Mei Lai
