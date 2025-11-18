@@ -2,7 +2,6 @@
 
 
 # 🚀 Hao Mei Lai
-
 ## 📖 Descripción
 
 HaoMeiLai es el sitio web corporativo de un restaurante de comida china. La plataforma sirve como un escaparate digital para mostrar el menú y realizar la compra para pasar a recoger el pedido. Está alojado en Hostinger para asegurar su disponibilidad en línea.
