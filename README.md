@@ -18,7 +18,6 @@ Proyecto final para la asignatura **Legislación y Derecho Informático**.
 * Alan Amador Alcaraz Malta
 * Maximo Alessandro Villa Rivera
 ---
-
 ## ⚖️ Aspectos de Legislación y Derecho Informático
 
 ➤ Protección de Datos
@@ -51,11 +50,9 @@ Prevención de Inyección SQL (SQL Injection): Se utilizan consultas preparadas 
 
 Validación de Entradas: Se validan y sanean los datos enviados por el usuario (especialmente en formularios) para prevenir ataques de Cross-Site Scripting (XSS).
 ---
-
 ## ⚙️ Tecnologías Utilizadas
 
 * **Lenguajes:** PHP, JavaScript, CSS, SQL
-
 * **Base de Datos:** MySQL
 * **Servidor:** Hostinger 
 * **Frameworks/Bibliotecas:** n/a
